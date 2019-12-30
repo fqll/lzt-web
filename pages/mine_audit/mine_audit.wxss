@@ -1,0 +1,81 @@
+@import '/common/components/cateTab/cateTab.wxss';
+@import '/common/css/normal.wxss';
+.list-wrap{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 20rpx;
+  border-top: 1px solid rgba(228, 228, 228, 1)
+}
+.each-list{
+  width: 100%;
+  padding: 20rpx 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(228, 228, 228, 1);
+  position: relative
+}
+.each-name{
+  width: 90rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 90rpx;
+  background-color: rgb(22,155,213);
+  color: white;
+  font-size: 24rpx;
+}
+.each-desc{
+  font-size: 24rpx;
+  color: #999999;
+  margin-left: 20rpx;
+}
+.each-desc text{
+  display: block;
+  line-height:40rpx;
+}
+.each-desc text:first-child{
+  font-size:28rpx;
+  color: black;
+}
+.each-desc text:last-child{
+  color: #FF9966;
+  margin-top: 10rpx;
+}
+.each-time{
+  font-size: 24rpx;
+  color: #999999;
+  position: absolute;
+  right: 10rpx;
+}
+.each-button{
+  padding: 10rpx 20rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  border: 1px solid rgba(69, 170, 48, 1);
+  background-color: white;
+  font-size: 24rpx;
+  color: rgba(69, 170, 48, 1);
+  position: absolute;
+  bottom: 40rpx;
+  right: 10rpx;
+}
+
+.red-circle {
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 15rpx;
+  line-height: 15rpx;
+  position: absolute;
+  top: 5rpx;
+  left: 2%;
+  background-color: rgb(255,59,47);
+  color: white;
+  text-align: center
+}
+
+.high-list {
+  position: relative;
+  z-index: 10001 !important;
+  background-color: white !important
+}

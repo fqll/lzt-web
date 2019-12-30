@@ -1,0 +1,25 @@
+<view wx:if="{{isShow}}" class="guide-wrap">
+  <view class="{{showTop?'people-wrap show-top': 'people-wrap'}}">
+    <view class="guide-msg">
+      <text>{{talkingWords}}</text>
+    </view>
+    <image class="girl-guide" mode="widthFix" src="{{type === 'entry' ? '../../images/boy_guide.gif': '../../images/girl_guide.gif'}}"></image>
+  </view>
+  <!--  手指点击 -->
+  <image wx:if="{{clickShow}}" style='bottom: {{clickBottom}}; left: {{clickLeft}}' class="point-click" mode="widthFix" src="../../images/point_click.gif"></image>
+  <!-- 直接跳过 -->
+  <image bindtap="jumpGuide" class="end-btn" mode="widthFix" src="../../images/jump.png"></image>
+  <!--  -->
+  <view wx:if="{{entryGuide}}" bindtap="gotoEntryGuide" class="entry-guide">
+    进入入职流程
+  </view>
+  <view wx:if="{{preEntry}}" bindtap="gotoPreEntry" class="pre-entry">
+    待入职到公司
+  </view>
+  <view wx:if="{{entryBtn}}" bindtap="doEntry" class="pre-entry">
+    办理入职
+  </view>
+  <view wx:if="{{exitBtn}}" bindtap="doExit" class="pre-entry">
+    退出引导
+  </view>
+</view>

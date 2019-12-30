@@ -1,0 +1,3 @@
+<view class="loading-wrap">
+  <image mode="widthFix" src="./images/loading_index.gif"></image>
+</view>

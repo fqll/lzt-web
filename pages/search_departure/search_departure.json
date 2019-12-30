@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cate-tab": "../../common/components/cateTab/cateTab",
+    "guide-wrap": "../../common/components/guideWrap/guideWrap"
+  }
+}

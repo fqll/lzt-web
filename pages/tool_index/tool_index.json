@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "guide-wrap": "../../common/components/guideWrap/guideWrap",
+    "auth-modal": "../../common/components/authModal/authModal"
+  }
+}

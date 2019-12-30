@@ -1,0 +1,97 @@
+
+.guide-wrap{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1000;
+  top:0;
+  left: 0
+}
+
+.show-top{
+  top: 25% !important;
+  z-index: 10002 !important;
+}
+
+.people-wrap{
+  position: fixed;
+  z-index: 10;
+  bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: right
+}
+
+.girl-guide{
+  width: 300rpx;
+}
+
+.point-click{
+  position: fixed;
+  z-index: 10;
+  width: 200rpx;
+}
+
+.guide-msg {
+  position: relative;
+  top: -40rpx;
+  left: 30rpx;
+}
+
+.guide-msg > text {
+  /* top: 60rpx; */
+  left:30rpx;
+  float: left;
+  padding: 20rpx;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 24rpx;
+  position: relative;
+  border-radius: 20rpx;
+  width: 400rpx;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  right: 20rpx;
+  line-height: 40rpx;
+}
+
+.pre-entry{
+  width: 240rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color:white;
+  font-size: 26rpx;
+  border: 1px solid white;
+  border-radius: 60rpx;
+  position: fixed;
+  z-index: 10;
+  left: 2%;
+  top: 2%;
+}
+
+.entry-guide{
+  width: 320rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color:white;
+  font-size: 26rpx;
+  border: 1px solid white;
+  border-radius: 60rpx;
+  position: fixed;
+  z-index: 10;
+  left: 2%;
+  top: 2%;
+}
+
+.end-btn{
+  width: 60rpx;
+  position: fixed;
+  z-index: 10;
+  right: 2%;
+  top: 2%;
+}

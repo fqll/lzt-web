@@ -1,0 +1,171 @@
+@import '/common/css/normal.wxss';
+html{
+    font-size: 62.5%;
+    padding: 0;
+    margin: 0;
+}
+/* .info-head{
+    margin: 2rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 5rem;
+}
+.info-head .info-head-view text:first-child{
+    color: rgb(37,37,37);
+    font-size: 36rpx;
+    font-weight: bold;
+}
+.info-head .info-head-view text:last-child{
+    color:rgb(150,150,150);
+    font-size: 28rpx;
+}
+.info-head .info-head-view text:nth-child(2),.info-head .info-head-view view text:first-child{
+    color:rgb(150,150,150);
+    font-size: 28rpx;
+    font-weight: normal
+}
+.info-head .info-head-view text span{
+    padding: 0 1rpx;
+    border-right: 1px solid rgb(150,150,150);
+}
+.info-head view text span:first-child{
+    padding-left: 0;
+}
+.info-head view text span:last-child{
+    border-right: none;
+}
+.info-head image{
+    width: 80rpx;
+    height: auto;
+    padding: 10rpx;
+    border-radius:6rpx;
+    border:1px solid rgb(200,200,200)
+}
+.dash-line{
+    width: 100%;
+    border-bottom: 1px dashed rgb(200,200,200);
+}
+.info-head .info-head-view{
+    display: flex;
+    padding: 1rpx 0;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.echarts{
+    margin: 40rpx 40rpx;
+}
+.list{
+    margin: 40rpx 40rpx;
+}
+.echarts text{
+    color: rgb(37,37,37);
+    font-size: 36rpx;
+    font-weight: bold;
+}
+#echarts-wrap{
+    width: 100%;
+    height: 400rpx;
+}
+.title{
+    color: rgb(37,37,37);
+    font-size: 36rpx;
+    font-weight: bold;
+}
+.list-wrap{
+    margin-top: 20rpx;
+}
+.list view view{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+.list view view text{
+    color: rgb(150,150,150);
+    font-size: 32rpx;
+}
+.list view view button{
+    margin-left: 20rpx;
+} */
+.company-wrap{
+  width: 90%;
+  margin-left: 9%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap
+}
+.company-wrap view{
+  width: 15%;
+  display: flex;
+  margin-right: 10%;
+  margin-bottom: 40rpx;
+  flex-direction: column;
+  align-items: center
+}
+.company-wrap view view{
+  width: 100%;
+  height: 100rpx;
+  margin-bottom: 0;
+  margin-right: 0
+}
+.company-wrap view image{
+  width: 100%;
+  border: 1px solid rgb(200,200,200);
+  border-radius: 20rpx;
+  display: block
+}
+.desc{
+  width: 100%;
+  text-align: center;
+  color: rgb(37,37,37);
+  font-size: 36rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 40rpx
+}
+.company-wrap view text{
+  width: 100%;
+  font-size: 28rpx;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 10rpx;
+  color: rgb(150,150,150)
+}
+bg-view{
+  width: 100%;
+
+}
+.bg{
+  width: 50%;
+  margin-left: 25%
+}
+.wrap{
+    padding-bottom: 100rpx;
+}
+.button-bar{
+    height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    background-color: white
+}
+.button-bar button{
+    width: 50%;
+    height: 100%;
+    font-size: 32rpx;
+    border: 1px solid rgb(220,220,220);
+    background: none;
+    line-height: 100rpx
+}
+.none-view{
+  width: 100%;
+  text-align: center;
+  color: rgb(150,150,150);
+  margin-top: 100rpx
+}

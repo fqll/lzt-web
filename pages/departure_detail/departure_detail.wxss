@@ -1,0 +1,256 @@
+/* pages/departure_detail/departure_detail.wxss */
+@import '/common/css/normal.wxss';
+@import './word_spe.wxss';
+
+page {
+  padding-bottom: 0;
+}
+
+.detail-wrap {
+  width: 90%;
+  margin-left: 5%;
+  padding: 30rpx 0;
+}
+
+.detail-head {
+  width: 100%;
+  padding: 20rpx 5rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(228, 228, 228, 1);
+  position: relative;
+}
+
+.detail-name {
+  width: 90rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 90rpx;
+  background-color: rgb(22, 155, 213);
+  color: white;
+  font-size: 24rpx;
+}
+
+.detail-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 30rpx;
+}
+
+.detail-desc text {
+  display: block;
+  line-height: 40rpx;
+}
+
+.detail-desc text:first-child {
+  font-size: 28rpx;
+  color: black;
+}
+
+.detail-desc text:last-child {
+  color: #f96;
+}
+
+.detail-content {
+  width: 100%;
+  padding: 25rpx 0;
+  border-bottom: 1px solid rgba(228, 228, 228, 1);
+}
+
+.each-row {
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+}
+
+.each-row text {
+  display: inline-block;
+}
+
+.each-row text:first-child {
+  width: 20%;
+  color: #999;
+}
+
+.each-row text:nth-child(2) {
+  width: 68%;
+  margin-left: 30rpx;
+  color: #333;
+}
+
+.detail-record {
+  width: 100%;
+  padding: 50rpx 0;
+  border-bottom: 1px solid rgba(228, 228, 228, 1);
+}
+
+.record-row {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.record-row text {
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+
+.record-row .record-status {
+  margin-left: 0rpx;
+}
+
+.record-row .other-name {
+  width: 100rpx;
+}
+
+.status-desc {
+  font-size: 24rpx;
+  color: #999;
+  position: absolute;
+  left: 230rpx;
+  top: 65%;
+  word-break: break-all;
+}
+
+.record-row .record-time {
+  font-size: 22rpx;
+  position: absolute;
+  right: 20rpx;
+}
+
+.record-line {
+  width: 40rpx;
+  height: 60rpx;
+  margin-left: 65rpx;
+  border-left: 2px dashed rgb(153, 153, 153);
+}
+
+.action-wrap {
+  width: 100%;
+  padding: 25rpx 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.action-wrap view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-wrap view image {
+  width: 40rpx;
+}
+
+.action-wrap view text {
+  font-size: 24rpx;
+  color: rgb(51, 51, 51);
+}
+
+.action-wrap button {
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: white;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.action-wrap .reject {
+  margin-left: 30rpx;
+  color: #333;
+  border: 1px solid rgba(153, 153, 153, 1);
+}
+
+.action-wrap .agree {
+  margin-left: 40rpx;
+  background-color: rgba(69, 170, 48, 1);
+  color: white;
+}
+
+.action-wrap .contact {
+  width: 140rpx;
+  margin-left: 40rpx;
+  background-color: rgba(69, 170, 48, 1);
+  color: white;
+}
+
+.basic-input-form .share-form {
+  width: 100%;
+  margin-top: 40rpx;
+  margin-left: 0;
+}
+
+.form-btn-submit {
+  width: 80%;
+  height: 66rpx;
+  line-height: 65rpx;
+  margin-left: 10%;
+  margin-top: 40rpx;
+  font-size: 26rpx;
+  color: white;
+  border: 1px solid #2f88e0;
+  border-radius: 3px;
+  background-color: #3296fa;
+}
+
+.btn-bottom-wrap {
+  width: 116%;
+  margin-left: -8%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 80rpx;
+  justify-content: space-between
+}
+
+.btn-bottom-wrap button {
+  width: 30%;
+  text-align: center;
+  height: 50rpx;
+  line-height: 48rpx;
+  font-size: 26rpx;
+  color: rgb(37,37,37);
+  background-color: white;
+  border: 1px solid rgba(37,37,37,.3);
+  border-radius: 50rpx;
+
+}
+
+.top-some {
+  margin-top: 80rpx;
+}
+
+.flex-display {
+  width: 100%;
+  margin-top: 40rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgb(37, 37, 37);
+  justify-content: space-between;
+}
+
+.focus-btn {
+  border: 1px solid rgb(150, 150, 150);
+  border-radius: 6rpx;
+  background: none;
+  font-size: 24rpx;
+  padding: 2rpx 10rpx;
+  margin-right: 0;
+  color: rgb(150, 150, 150);
+  display: inline;
+}
+
+.highlight {
+  position: relative;
+  z-index: 10001;
+}

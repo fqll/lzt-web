@@ -1,0 +1,28 @@
+<view class="aui-flexView">
+  <cate-tab activeId="{{activeId}}" tabs="{{tabs}}" bind:changetab="changetab"></cate-tab>
+  <view class="common-search">
+    <image bindtap='searchPeople' mode="widthFix" src="../../common/images/icon_search.png"></image>
+    <input maxlength='20' required="required" value="{{keyWords}}" bindinput="keyWordsInput" placeholder='输入员工姓名'></input>
+  </view>
+
+  <view class="common-table-view">
+    <view class="head">
+      <view>员工姓名</view>
+      <view>入职时间</view>
+      <view>入职背调</view>
+    </view>
+    <view wx:for="{{entryList}}" wx:key="{{index}}" class="content">
+      <view data-id="{{item.departureId}}" bindtap='lookDetail'>{{item.employeeName}}</view>
+      <view data-id="{{item.departureId}}" bindtap='lookDetail'>{{item.delayEntryDate}}</view>
+      <view>
+        <button wx:if="{{item.chatAble}}" data-id="{{item.departureId}}" bindtap='gotoChat'>背调</button>
+        <text wx:if="{{!item.chatAble}}">无</text>
+      </view>
+    </view>
+  </view>
+
+  <image wx:if="{{entryList.length == 0}}" class="none-data-img" mode="widthFix" src="../../common/images/none-data-img.png"></image>
+  <text class="none-data-text" wx:if="{{entryList.length == 0}}">暂无数据</text>
+</view>
+
+<guide-wrap wx:if="{{isGuide}}" type="{{guide.type}}" clickLeft="{{guide.clickLeft}}" clickBottom="{{guide.clickBottom}}" id="gudie-wrap"></guide-wrap>

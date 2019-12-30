@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cate-tab": "../../common/components/cateTab/cateTab"
+  }
+}

@@ -1,0 +1,69 @@
+/* components/common/mobildValidate/mobileValidate.wxss */
+
+.mask {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 630rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.title {
+  position: relative;
+  width: 100%;
+  padding: 23rpx 0;
+}
+.title .close-img{
+position: absolute;
+top:30rpx;
+right:20rpx;
+width: 30rpx;
+height: 30rpx;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400rpx;
+}
+.content .icon{
+  width: 160rpx;  
+  height: 160rpx;  
+}
+.content .tip-text{
+  margin-top:20rpx;
+  font-size:36rpx;
+  color:#555;
+}
+.content .tip-text text{
+  display: block;
+  text-align: center;
+}
+.button {
+  width: 100%;
+  height: 100rpx;
+  background: rgba(58, 104, 169, 1);
+  border-radius: 0px 0px 10rpx 10rpx;
+  font-size: 36rpx;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.mt86 {
+  margin-top: 86rpx;
+}

@@ -1,0 +1,221 @@
+page{
+  margin: 0;
+  background-color:#f1f1f1;
+}
+
+
+input {
+  outline: 0;
+}
+
+body {
+  margin: 0 auto;
+  background: #f1f1f1;
+  color: #333;
+}
+
+
+#message {
+  background-color: #f1f1f1;
+  padding: 40rpx;
+  padding-bottom: 200rpx
+}
+
+.time {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin-bottom:30rpx;
+  margin-top:30rpx;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  height: 120rpx;
+  background-color: #fff;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  padding-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+}
+
+#footer image {
+  margin-left: 4rpx;
+  width: 10rpx;
+}
+
+#footer input {
+  margin-left: 4rpx;
+  width: 480rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+  border: 0.2rpx solid #ddd;
+  position: absolute;
+  right: 180rpx;
+  padding-left: 20rpx;
+  font-size: 26rpx;
+}
+
+#footer text {
+  width: 120rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 50rpx;
+  text-align: center;
+  /* background-color: #3296fa; */
+  background-color:  rgb(152,225,101);
+  border-radius: 10rpx;
+  position: absolute;
+  right: 30rpx;
+}
+
+.reply:after, .ask:after, .msg:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.msg {
+  position: relative;
+}
+
+.reply .msg .name {
+  position: absolute;
+  font-size: 24rpx;
+  color: #999;
+  top: -2rpx;
+  left: 100rpx;
+  background: none;
+}
+
+.ask .msg text{
+  background-color: rgb(152,225,101)
+}
+
+.msg > image {
+  width: 90rpx;
+  float: left;
+}
+
+.reply .msg > text {
+  /* top: 60rpx; */
+  left:30rpx;
+  border-radius: 20rpx;
+}
+
+.msg > text {
+  float: left;
+  padding: 20rpx;
+  background: #fff;
+  font-size: 24rpx;
+  position: relative;
+  border-radius: 20rpx;
+  max-width: 400rpx;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  right: 20rpx;
+}
+.msg_input {
+  position: absolute;
+  /* background: url(./../images/msg-input.png) no-repeat; */
+  background-size: 6.2rpx auto;
+  width: 6.2rpx;
+  height: 10.2rpx;
+  left: -6.2rpx;
+  top: 5rpx;
+}
+
+.ask .msg image, .ask .msg text, .ask .msg {
+  float: right;
+}
+
+.ask .msg_input {
+  left: auto;
+  right: -2.2rpx;
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+
+.reply, .ask {
+  padding-bottom: 14rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: column
+}
+
+.alert_novip, .flower_num, .give_flower {
+  display: none;
+  padding: 6rpx 10rpx;
+  font-size: 5.6rpx;
+}
+
+.alert_novip text, .flower_num text {
+  margin-bottom: 9rpx;
+}
+
+.layui-layer-wrap button {
+  font-size: 5.6rpx;
+  padding: 4rpx 6rpx;
+  margin-top: 2rpx;
+  background: #f8f8f8;
+  border-radius: 20rpx;
+}
+
+.flower_num button {
+  padding: 4rpx 10rpx;
+  border-radius: 20rpx;
+}
+
+.layui-layer-wrap button:first-child {
+  float: left;
+}
+
+.layui-layer-wrap button:last-child {
+  float: right;
+  background: #ff7171;
+  color: #fff;
+}
+
+.alert_novip button {
+  padding: 4rpx 6rpx;
+  border-radius: 20rpx;
+}
+
+.flower {
+  width: 16rpx;
+  margin: 0 auto;
+}
+
+.give_flower {
+  text-align: center;
+}
+
+.give_flower text {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.give_flower input {
+  width: 2rpx;
+  margin-right: 2rpx;
+  margin-top: 4rpx;
+}
+
+.give_flower button {
+  display: block;
+  width: 6rpx;
+  font-size: 5.6rpx;
+  margin: 0 auto;
+  margin-top: 12rpx;
+  float: none !important;
+  line-height: 13rpx;
+  border-radius: 20rpx;
+}

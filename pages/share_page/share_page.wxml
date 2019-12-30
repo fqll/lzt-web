@@ -1,0 +1,92 @@
+<cate-tab activeId="{{activeId}}" tabs="{{tabs}}" bind:changetab="changetab"></cate-tab>
+
+<!-- invite -->
+<view class="single-share" wx:if="{{activeId === 'invite'}}">
+  <view class="common-table-view">
+    <view class="head">
+      <view>审批人姓名</view>
+      <view>状态</view>
+    </view>
+    <view wx:for="{{inviteList}}" wx:key="{{index}}" class="content">
+      <view data-index="{{index}}" >{{item.nickName}}</view>
+      <view class="grayer">已邀请</view>
+    </view>
+  </view>
+
+  <view class="add-wrap">
+    <image class="add-img" bindtap="openInput" mode="widthFix" src="./images/add.png"></image>
+    <text>点击创建审批人邀请</text>
+  </view>
+
+  <view bindtap='gotoShareDetail' class="other-wray"><text>其他邀请方式</text></view>
+</view>
+
+<!-- apply -->
+<view class="list-wrap" wx:elif="{{activeId === 'apply'}}">
+  <view wx:for="{{applyList}}" wx:key="{{index}}" class="each-list">
+  <view class="wx-list">
+    <image mode="widthFix" src="{{item.portraitUrl}}"></image>
+    <text>{{item.wxNickName}}</text>
+  </view>
+  <view class="text-list">
+    <text>{{item.nickName}}</text>
+    <text>{{item.applyTime}}</text>
+  </view>
+  <view class="btns">
+    <button bindtap="rejectApply" data-employeeid="{{item.userId}}">拒绝</button>
+    <button data-employeeid="{{item.userId}}" bindtap="showSetting" class="active">同意</button>
+  </view>
+  </view>
+</view>
+
+
+
+<!-- done -->
+<view  wx:elif="{{activeId === 'done'}}">
+  <view class="common-search">
+      <image bindtap='searchPeople' mode="widthFix" src="../../common/images/icon_search.png"></image>
+      <input maxlength='20' required="required" value="{{keyWords}}" bindinput="keyWordsInput" placeholder='搜索'></input>
+    </view>
+
+    <view class="common-table-view">
+      <view class="head">
+        <view>审批人姓名</view>
+        <view>权限管理</view>
+      </view>
+      <view wx:for="{{doneList}}" wx:key="{{index}}" class="content">
+        <view>{{item.nickName}}</view>
+        <view class="common-table-btn" data-nickname="{{item.nickName}}"  data-employeeid="{{item.userId}}" bindtap='showSetting'>编辑</view>
+      </view>
+    </view>
+</view>
+
+<block class="fix-all">
+  <input-modal desc="填写审批人信息" type="name" name="{{inputName}}" bind:rejectForm="getNum" isShow="{{inputShow}}"></input-modal>
+</block>
+
+<!-- 弹窗 -->
+<view wx:if="{{isShow}}" class="setting-modal">
+  <view class="setting-wrap">
+    <text class="title">{{activeId === 'apply' ? '请为审批人设置角色权限': '编辑'}}</text>
+    <form bindsubmit='formSubmit' bindreset='formReset' class="basic-input-form">
+      <view wx:if="{{activeId === 'done'}}" class="form-section">
+        <text class="form-label">姓名</text>
+        <input value="{{formData.nickName}}" name="name" maxlength='20' placeholder='请输入姓名'></input>
+      </view>
+
+      <checkbox-group name="checkboxIds" class="radio-group" bindchange="checkboxChange">
+        <checkbox wx:key="{{index}}" class="each-line" wx:for="{{items}}" value="{{item.value}}" checked="{{formData.authorityList[index].check}}">
+          <view>
+            <text>{{item.title}}</text>
+            <text>{{item.desc}}</text>
+          </view>
+        </checkbox>
+      </checkbox-group>
+
+      <view class="buttons-wrap">
+        <button bindtap='closeSetting'>取消</button>
+        <button formType="submit">确定</button>
+      </view>
+    </form>
+  </view>
+</view>
