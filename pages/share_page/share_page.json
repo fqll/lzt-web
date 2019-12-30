@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "cate-tab": "../../common/components/cateTab/cateTab",
-    "input-modal": "../../common/components/inputModal/inputModal"
-  }
-}
