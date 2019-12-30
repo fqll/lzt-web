@@ -1,0 +1,16 @@
+<view class='mask' wx:if="{{isShow}}">
+  <view class='box'>
+    <view class='content'>
+      <view>
+        <text>{{desc}} :</text>
+        <input wx:if="{{type === 'number'}}" type="number" bindinput='inputContent' value="{{num?num: ''}}"></input>
+        <input wx:elif="{{type === 'name'}}"  placeholder='例: 人事部-阿离' bindinput='inputName' value="{{name?name: ''}}"></input>
+      </view>
+    </view>
+    <view class="button-wrap">
+      <button bindtap="cancel" class='button'>取消</button>
+      <button wx:if="{{type === 'number'}}" bindtap="onSure" class='button'>确认</button>
+      <button wx:elif="{{type === 'name'}}"  data-name="{{content}}" bindtap="sureShare" open-type="share" class='button'>确认</button>
+    </view>
+  </view>
+</view>

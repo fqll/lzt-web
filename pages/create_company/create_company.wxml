@@ -1,0 +1,34 @@
+<view class="common-form">
+  <view class="form-title">
+    <text>申请成功后需1~3个工作日审核</text>
+  </view>
+  <view class="form-content">
+    <view class="form-line">
+      <label class="form-label">公司名称</label>
+      <input required="required" value="{{formData.companyName}}" bindinput='companyNameInput' class="form-input" placeholder="" />
+    </view>
+    <view class="form-line">
+      <label class="form-label">我的名字</label>
+      <input required="required" value="{{formData.nickName}}" bindinput='nickNameInput' class="form-input" placeholder="" />
+    </view>
+    <view class="form-line">
+      <label class="form-label">在职人数</label>
+      <input type='number' required="required" value="{{formData.incumbentsCount}}" bindinput='incumbentsCountInput' class="form-input" placeholder="" />
+    </view>
+    <view class="form-line">
+      <label class="form-label">企业统一社会信用代码</label>
+      <input required="required" value="{{formData.creditCode}}" bindinput='creditCodeInput' class="form-input" placeholder="" />
+    </view>
+
+    <view class="form-line">
+      <label class="form-label">是否已有线下审批流程</label>
+      <picker class="form-input" bindchange='auditChange' value="{{auditIndex}}" range='{{audits}}'>
+        当前选择：{{audits[auditIndex]}}
+      </picker>
+    </view>
+
+    <button bindtap='sumbitDepart' class="form-one-submit">
+      提交审核
+    </button>
+  </view>
+</view>

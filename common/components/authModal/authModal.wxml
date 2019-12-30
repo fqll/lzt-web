@@ -1,0 +1,30 @@
+<view class='mask' wx:if="{{isShow}}">
+<!-- 获取头像权限 -->
+  <view wx:if="{{auth === 'avatorPower'}}" class='box'>
+     <!-- <view class='title'>
+       <image class='close-img' src='../../images/logo.png' bindtap=''></image>
+     </view> -->
+     <view class='content'>
+        <image class='icon' src="../../images/lizhitong-logo.png"></image>
+        <view class='tip-text'>
+        <text>加入离职通</text>
+        <text>获取本人头像</text>
+        </view>
+     </view>
+     <button class='button' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">立即加入</button>
+  </view>
+   <!-- 获取消息权限 -->
+  <view wx:elif="{{auth === 'msgPower'}}" class='box'>
+     <!-- <view class='title'>
+       <image class='close-img' src='../../images/logo.png' bindtap=''></image>
+     </view> -->
+     <view class='content'>
+        <image class='icon' src="../../images/lizhitong-logo.png"></image>
+        <view class='tip-text'>
+        <text>加入离职通</text>
+        <text>接受消息推送</text>
+        </view>
+     </view>
+     <button class='button'  bindtap="openMsgGet">点击开启</button>
+  </view>
+</view>

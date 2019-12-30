@@ -1,0 +1,80 @@
+<view>
+  <view class="top-line"></view>
+  <view class="company-title">
+    <image mode="widthFix" src="./images/name_logo.png"></image>
+    <text>{{companyInfo.companyName}}</text>
+    <button bindtap='changeCompany'>切换企业</button>
+  </view>
+  <view class="tool-wrap">
+    <view class="row">
+      <view class="tool-view" bindtap="gotoCreate">
+        <view class="logo-wrap">
+          <image class="tool-logo" mode="widthFix" src="./images/r1_1.png"></image>
+          <image wx:if="{{indexInfo.create_departure}}" class="red-logo" mode="widthFix" src="./images/red_logo.png"></image>
+        </view>
+        <text>开具离职证明</text>
+        <text>纸质证明线上替代</text>
+        <text>有效降低用工风险</text>
+      </view>
+      <view class="tool-view" bindtap="gotoCheck">
+        <view class="logo-wrap">
+          <image class="tool-logo" mode="widthFix" src="./images/r1_2.png"></image>
+          <image wx:if="{{indexInfo.handle_entry}}" class="red-logo" mode="widthFix" src="./images/red_logo.png"></image>
+        </view>
+        <text>入职办理</text>
+        <text>一键发送入职通知</text>
+        <text>快速建立背调通道</text>
+      </view>
+    </view>
+
+    <view class="row">
+      <view class="tool-view" bindtap="gotoChatList">
+        <view class="logo-wrap">
+          <image class="tool-logo" mode="widthFix" src="./images/r2_1.png"></image>
+          <image wx:if="{{indexInfo.investigation}}" class="red-logo" mode="widthFix" src="./images/red_logo.png"></image>
+        </view>
+        <text>背景调查</text>
+        <text>随时查阅背调进度</text>
+        <text>适时掌握背调反馈</text>
+      </view>
+      <view class="tool-view" bindtap="gotoLook">
+        <view class="logo-wrap">
+          <image class="tool-logo" mode="widthFix" src="./images/r2_2.png"></image>
+          <image wx:if="{{indexInfo.analysis_departure}}" class="red-logo" mode="widthFix" src="./images/red_logo.png"></image>
+        </view>
+        <text>离职分析</text>
+        <text>有效反馈离职信息</text>
+        <text>全面分析离职原因</text>
+      </view>
+    </view>
+
+    <view class="row">
+      <view class="tool-view" bindtap="gotoDepart">
+        <view class="logo-wrap">
+          <image class="tool-logo" mode="widthFix" src="./images/r3_1.png"></image>
+          <image wx:if="{{indexInfo.my_approval}}" class="red-logo" mode="widthFix" src="./images/red_logo.png"></image>
+        </view>
+        <text>我的审批</text>
+        <text>高效处理审批流程</text>
+        <text>及时获取离职证明</text>
+      </view>
+      <view class="tool-view" bindtap="gotoShare">
+        <view class="logo-wrap">
+          <image class="tool-logo" mode="widthFix" src="./images/r3_2.png"></image>
+          <image wx:if="{{indexInfo.add_approver}}" class="red-logo" mode="widthFix" src="./images/red_logo.png"></image>
+        </view>
+        <text>添加审批人</text>
+        <text>解锁多种添加方式</text>
+        <text>轻松管理审批权限</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="blue-line">
+
+</view>
+
+<guide-wrap wx:if="{{isGuide}}" type="{{guide.type}}" clickLeft="{{guide.clickLeft}}" clickBottom="{{guide.clickBottom}}" id="gudie-wrap"></guide-wrap>
+
+<auth-modal auth="msgPower" isShow="{{msgPowerShow}}"></auth-modal>

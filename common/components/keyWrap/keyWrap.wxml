@@ -1,0 +1,15 @@
+<view class='mask' wx:if="{{isShow}}">
+  <image mode="widthFix" src="./images/bg.jpg"></image>
+
+  <view class='box'>
+    <view class='content'>
+      <view>
+        <text>请输入该离职证明身份证后4位 :</text>
+        <input maxlength='4' type="number" bindinput='inputContent' value=""></input>
+      </view>
+    </view>
+    <view class="button-wrap">
+      <button  bindtap="onSure" class='button'>确认</button>
+    </view>
+  </view>
+</view>

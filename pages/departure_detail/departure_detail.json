@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "guide-wrap": "../../common/components/guideWrap/guideWrap",
+    "key-wrap": "../../common/components/keyWrap/keyWrap"
+  }
+}

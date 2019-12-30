@@ -1,0 +1,62 @@
+<view>
+  <cate-tab activeId="{{activeId}}" tabs="{{tabs}}" bind:changetab="changetab"></cate-tab>
+  <!-- 离职原因分析 -->
+  <view wx:if="{{activeId === 'reason'}}" class="canvas-wrap">
+    <text>公司离职原因分析</text>
+    <canvas style='height:300px' canvas-id="reason-company"></canvas>
+  </view>
+
+  <view wx:if="{{activeId === 'reason'}}" class="canvas-wrap">
+    <text>个人离职原因分析</text>
+    <canvas style='height:450px' canvas-id="reason-self"></canvas>
+  </view>
+  <!-- 离职率分析 -->
+  <view wx:elif="{{activeId === 'ratio'}}">
+    <view class="table-view">
+      <view class="head">
+        <view>公司人数(可改)</view>
+        <view>年离职率</view>
+        <view>月均离职率</view>
+      </view>
+      <view class="content">
+        <view bindtap="changeNum">{{ratioData.incumbentsCount}}</view>
+        <view>{{ratioData.currentYearDepartureRate != 0?ratioData.currentYearDepartureRate + '%': 0}}</view>
+        <view>{{ratioData.currentMonthDepartureRate != 0?ratioData.currentMonthDepartureRate + '%': 0}}</view>
+      </view>
+    </view>
+
+    <scroll-view scroll-x="true" wx:if="{{!isShow}}" class="canvas-column">
+      <canvas style='height:450px' id="columnCanvas" canvas-id="columnCanvas"></canvas>
+    </scroll-view>
+    
+  </view>
+
+  <view class="stock-wrap" wx:elif="{{activeId === 'stock'}}">
+    <view class="page-wrap">
+      <text class="text-already">已离职<text> {{peopleNum}} </text>人</text>
+      <view class="search-wrap">
+        <image bindtap='searchStock' mode="widthFix" src="../../common/images/icon_search.png"></image>
+        <input maxlength='20' required="required" value="" bindinput="keyWordsInput" placeholder='搜索员工名字'></input>
+      </view>
+
+      <view class="table-view">
+        <view class="head">
+          <view>员工姓名</view>
+          <view>职务</view>
+          <view>离职日期</view>
+          <view>状态</view>
+        </view>
+        <view bindtap="gotoDetail" data-id="{{item.id}}" wx:for="{{listData}}" wx:key="{{index}}" class="content">
+          <view>{{item.nickName}}</view>
+          <view>{{item.employeePost}}</view>
+          <view>{{item.departureDate}}</view>
+          <view>{{item.auditStatusDesc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <block class="fix-all">
+    <input-modal desc="公司当前人数" num="{{num}}" bind:cancelForm="cancelInput" bind:rejectForm="getNum" isShow="{{isShow}}"></input-modal>
+  </block>
+</view>
