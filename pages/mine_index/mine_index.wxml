@@ -1,0 +1,10 @@
+<view>
+  <view bindtap="gotoDepart" class="each-enter">
+    我的离职证明
+  </view>
+
+  <view class="tool-btn">
+    <view bindtap="gotoTool" wx:if="{{!isOnlyStuff}}">工作台</view>
+    <view bindtap="changeCompany">切换企业</view>
+  </view>
+</view>

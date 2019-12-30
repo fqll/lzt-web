@@ -1,0 +1,66 @@
+/* pages/employee_stock/employee_stock.wxss */
+@import '/common/css/normal.wxss';
+.page-wrap{
+  width: 90%;
+  margin-left: 5%;
+}
+.text-already{
+  color: #333333;
+  font-size: 24rpx;
+}
+.text-already text{
+  color: #FF0000
+}
+.search-wrap{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color:#999999;
+  border:1px solid rgba(228, 228, 228, 1);
+  box-sizing: border-box;
+  padding: 0 3%;
+  margin-bottom: 30rpx;
+  margin-top: 30rpx;
+}
+.search-wrap image{
+  width: 30rpx;
+}
+.search-wrap input{
+  width:60%;
+  margin-left: 30rpx;
+}
+.table-view{
+  width: 100%;
+  color:rgb(102, 102, 102);
+  font-size: 24rpx;
+  border: 1px solid rgb(215,215,215);
+  border-bottom: none;
+  margin-top: 20rpx;
+}
+.table-view .head{
+  font-size: 24rpx;
+  color:black
+}
+.table-view .head,.table-view .content{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(215,215,215)
+}
+.table-view .head view{
+  background-color: rgb(246,246,246)
+}
+.table-view .head view,.table-view .content view{
+  width: 25%;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-right: 1px solid rgb(215,215,215)
+}
+.table-view .head view:last-child,.table-view .content view:last-child{
+  width: 25%;
+  border-right: none
+}

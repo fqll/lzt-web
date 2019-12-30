@@ -1,0 +1,25 @@
+/* pages/stock_detail/stock_detail.wxss */
+@import '/common/css/normal.wxss';
+.detail-wrap{
+  width: 100%;
+  margin-left: 5%;
+  padding: 30RPX 0;
+}
+.detail-wrap view{
+  width: 100%;
+  padding: 20rpx 0;
+  border-bottom: 1px solid rgba(228, 228, 228, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.detail-wrap view text{
+  font-size: 26rpx;
+  color: #333333;
+  display: block
+}
+.detail-wrap view text:first-child{
+  width: 200rpx;
+  margin-right: 30rpx;
+  color: #999999
+}

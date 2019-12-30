@@ -1,0 +1,177 @@
+<!--pages/departure_detail/departure_detail.wxml-->
+<view wx:if="{{!isOver && activeTab !== 'join'}}" class="detail-wrap">
+  <view class="detail-head">
+    <view class="detail-name">{{detailData.departureInfo.employeeName}}</view>
+    <view class="detail-desc">
+      <text>离职证明审批</text>
+      <text style="color: {{detailData.color}}">{{detailData.departureInfo.auditStatusDesc}}</text>
+    </view>
+  </view>
+  <view class="detail-content">
+    <view class="each-row">
+      <text>审批编号 : </text>
+      <text>{{detailData.departureInfo.idCardNo}}</text>
+    </view>
+    <view class="each-row">
+      <text>员工姓名 : </text>
+      <text>{{detailData.departureInfo.employeeName}}</text>
+    </view>
+    <view class="each-row">
+      <text>员工入职日期 : </text>
+      <text>{{detailData.departureInfo.entryDate}}</text>
+    </view>
+    <view class="each-row">
+      <text>员工离职时担任的职务 : </text>
+      <text>{{detailData.departureInfo.employeePost}}</text>
+    </view>
+    <view class="each-row">
+      <text>员工提出离职申请日期 : </text>
+      <text>{{detailData.departureInfo.submitDate}}</text>
+    </view>
+    <view class="each-row">
+      <text>员工最后工作日期 : </text>
+      <text>{{detailData.departureInfo.departureDate}}</text>
+    </view>
+    <view class="each-row">
+      <text>审批备注 : </text>
+      <text>{{detailData.departureInfo.remark?detailData.departureInfo.remark: '暂无'}}</text>
+    </view>
+  </view>
+  <view wx:if="{{detailData.departureAuditList.length > 0 && activeTab !== 'share'}}" class="detail-record">
+    <view class="record-row">
+      <view class="detail-name">{{detailData.departureAuditList[0].nickName}}</view>
+      <text class="other-name">{{detailData.departureAuditList[0].userId === myId ? '我': detailData.departureAuditList[0].nickName}}</text>
+      <text class="record-status">{{detailData.departureAuditList[0].auditStage}}</text>
+      <text class="record-time">{{detailData.departureAuditList[0].operateTime}}</text>
+    </view>
+
+    <block wx:if="{{detailData.departureAuditList.length > 1}}" wx:for="{{detailData.departureAuditList}}" wx:key="{{index}}">
+      <block wx:if="{{index > 0}}">
+        <view class="record-line">
+
+        </view>
+
+        <view class="record-row">
+          <view class="detail-name">{{item.nickName}}</view>
+          <text class="other-name">{{item.userId === myId ? '我': item.nickName}}</text>
+          <text style='color: {{item.color}}' class="record-status">{{item.auditStage}}</text>
+          <text class="record-time">{{item.operateTime?item.operateTime: '暂无'}}</text>
+          <view wx:if="{{item.auditOpinions}}" class="status-desc">
+            {{item.auditOpinions}}
+          </view>
+        </view>
+      </block>
+    </block>
+
+  </view>
+
+  <view wx:if="{{activeTab === 'wait' || activeTab === 'done'}}" class="action-wrap">
+    <view wx:if="{{detailData.cancelable && activeTab === 'wait'}}" bindtap="cancelDeparture">
+      <image mode="widthFix" src="./images/back.png"></image>
+      <text>撤回流程</text>
+    </view>
+    <button bindtap="gotoReject" wx:if="{{activeTab === 'wait'}}" class="reject">拒绝离职</button>
+    <button bindtap="agreeDeparture" wx:if="{{activeTab === 'wait'}}" class="{{guide.guideStatus == 5 ? 'highlight agree' : 'agree'}}">同意离职</button>
+    <!-- <button bindtap="contactDeparture" wx:if="{{(activeTab === 'wait' || activeTab === 'done') && canConcern}}" class="{{guide.guideStatus == 5 ? 'highlight contact' : 'contact'}}">{{isFollowed? '已关注': '关注'}}</button> -->
+  </view>
+
+  <form wx:if="{{detailData.departureInfo.auditStatusDesc === '已办结' && activeTab === 'send'}}" bindsubmit='formSubmit' bindreset='formReset' class="basic-input-form">
+    <view class="share-form form-section">
+      <text class="form-label">发送给员工</text>
+      <picker class="form-picker form-control" bindchange='wayChange' value="{{wayIndex}}" range='{{ways}}'>
+        当前选择：{{ways[wayIndex]}}
+      </picker>
+    </view>
+
+    <view wx:if="{{ways[wayIndex] === '短信发送'}}" class="share-form form-section">
+      <text class="form-label">填写手机号</text>
+      <input name="phone" maxlength='20' placeholder='请输入'></input>
+    </view>
+
+    <view wx:if="{{ways[wayIndex] === '邮件发送'}}" class="share-form form-section">
+      <text class="form-label">填写邮件</text>
+      <input name="email" maxlength='20' placeholder='请输入'></input>
+    </view>
+
+
+    <button wx:if="{{ways[wayIndex] === '微信发送'}}" class='form-btn-submit' open-type='share'>微信发送</button>
+    <button wx:if="{{ways[wayIndex] === '短信发送'}}" class='form-btn-submit' formType="submit">短信发送</button>
+    <button wx:if="{{ways[wayIndex] === '邮件发送'}}" class='form-btn-submit' formType="submit">邮件发送</button>
+  </form>
+</view>
+
+<!-- word模式 -->
+<view wx:else>
+  <view class='word-wrap'>
+    <text class="word-title">离职证明</text>
+    <view class="word-content">
+      <view>
+        <text class="char-padding"></text>兹有 {{detailData.departureInfo.employeeName}} （{{detailData.departureInfo.gender}}）（身份证号码 : {{detailData.departureInfo.idCardNo}}）， 原系我司 {{detailData.departureInfo.department}} 部门 {{detailData.departureInfo.employeePost}}， 在岗时间自 {{detailData.departureInfo.entryDate}}到
+        {{detailData.departureInfo.departureDate}} 日止， 因{{detailData.departureInfo.departureReasonDesc}}， 于{{detailData.departureInfo.submitDate}}提出离职， 并于 {{detailData.departureInfo.departureDate}} 日与我公司正式解除劳动合同，无任何劳动纠纷
+      </view>
+      <text><text class="char-padding"></text>（离职证明遗失不补且涂改无效，请妥善保管）</text>
+      <text class="prove"><text class="char-padding"></text>特此证明</text>
+      <text class="right-align">{{detailData.companyInfo.companyName}}</text>
+      <text class="right-align right-time">{{detailData.departureInfo.departureDate}}</text>
+    </view>
+
+    <view wx:if="{{canAttend}}" class="btn-bottom-wrap">
+      <button wx:if="{{canAttend}}" bindtap='attendToEntry'>
+        背调后入职
+      </button>
+
+      <button wx:if="{{canAttend}}" bindtap='attendToJoin'>
+        直接入职
+      </button>
+
+      <button wx:if="{{(activeTab === 'share' || activeTab === 'send') && activeTab !== 'join'}}" open-type="share">
+        发送
+      </button>
+    </view>
+<!-- 
+    <button wx:if="{{(activeTab === 'share' || activeTab === 'send') && activeTab !== 'join' && !canAttend}}" open-type="share" class="form-btn-submit top-some">
+      发送
+    </button> -->
+
+    <form wx:if="{{(activeTab === 'share' || activeTab === 'send') && activeTab !== 'join' && !canAttend}}" bindsubmit='formSubmit' bindreset='formReset' class="basic-input-form">
+      <view class="share-form form-section">
+        <text class="form-label">发送给员工</text>
+        <picker class="form-picker form-control" bindchange='wayChange' value="{{wayIndex}}" range='{{ways}}'>
+          当前选择：{{ways[wayIndex]}}
+        </picker>
+      </view>
+
+      <view wx:if="{{ways[wayIndex] === '短信发送'}}" class="share-form form-section">
+        <text class="form-label">填写手机号</text>
+        <input name="phone" maxlength='20' placeholder='请输入'></input>
+      </view>
+
+      <view wx:if="{{ways[wayIndex] === '邮件发送'}}" class="share-form form-section">
+        <text class="form-label">填写邮件</text>
+        <input name="email" maxlength='20' placeholder='请输入'></input>
+      </view>
+
+
+      <button wx:if="{{ways[wayIndex] === '微信发送'}}" class='form-btn-submit' open-type='share'>微信发送</button>
+      <button wx:if="{{ways[wayIndex] === '短信发送'}}" class='form-btn-submit' formType="submit">短信发送</button>
+      <button wx:if="{{ways[wayIndex] === '邮件发送'}}" class='form-btn-submit' formType="submit">邮件发送</button>
+    </form>
+
+    <view wx:if="{{activeTab === 'join' && detailData.chatAble}}" class="flex-display">
+      <view>可以背调</view>
+      <view class="form-control ">
+        <button data-id="{{departureId}}" bindtap="gotoChat" class="focus-btn" placeholder="">入职背调</button>
+      </view>
+    </view>
+
+    <button bindtap='attendCompany' wx:if="{{activeTab === 'join' && joindone === ''}}" class="form-btn-submit top-some">
+      入职
+    </button>
+  </view>
+</view>
+
+<guide-wrap wx:if="{{isGuide}}" clickShow="{{guide.clickShow}}" showTop="{{guide.showTop}}" type="{{guide.type}}" clickLeft="{{guide.clickLeft}}" clickBottom="{{guide.clickBottom}}" id="gudie-wrap" preEntry="{{guide.preEntry}}" entryGuide="{{guide.entryGuide}}"
+  bind:gotoEntryGuide="gotoEntryGuide" bind:gotoPreEntry="gotoPreEntry" entryBtn="{{guide.entryBtn}}" exitBtn="{{guide.exitBtn}}" bind:doEntry="doEntry" bind:doExit="doExit"></guide-wrap>
+
+
+<key-wrap isShow="{{keyShow}}" bind:makeSure="makeSure"></key-wrap>

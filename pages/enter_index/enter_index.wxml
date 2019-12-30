@@ -1,0 +1,23 @@
+<auth-modal  bind:closeModal="onCloseModal" isShow="{{isShow}}"></auth-modal>
+<view class="wrap">
+    <view class="bg-view">
+      <image class="bg" mode="widthFix" src="./images/company.png"></image>
+      <text class="desc">我的公司</text>
+      <view wx:if="{{user.companyInfoList.length > 0}}" class="company-wrap">
+        <view data-id="{{item.companyId}}" data-role="{{item.roleName}}"  bindtap='gotoRoleIndex' wx:key="{{index}}" wx:for="{{user.companyInfoList}}">
+          <view>
+            <image mode="widthFix" src="{{item.logUrl?item.logUrl: '../../common/images/logo.png'}}"></image>
+          </view>
+          <text>{{item.companyName}}</text>
+        </view>
+      </view>
+
+      <view class="none-view" wx:else>
+        <text>(您还没有相关联的公司，请先创建或加入一家公司)</text>
+      </view>
+    </view>
+    <view class="button-bar">
+        <button bindtap='createCompany'>创建企业</button>
+        <button style="border-left: none" bindtap='joinCompany'>关联企业</button>
+    </view>
+</view>
