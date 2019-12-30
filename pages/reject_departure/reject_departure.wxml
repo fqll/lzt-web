@@ -1,5 +1,0 @@
-<view>
-  <text class="notice">请填写拒绝离职原因</text>
-  <textarea bindinput='textInput'></textarea>
-  <button bindtap="rejectDepart">确认</button>
-</view>

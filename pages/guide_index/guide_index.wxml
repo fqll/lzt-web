@@ -1,9 +1,0 @@
-<!--pages/mine_departrue/mine_departrue.wxml-->
-<view class="welcome-wrap">
-  <image src="./images/guide_bg.png" mode="widthFix" class="guide-bg"></image>
-  <view class="bottom-wrap">
-    <image bindtap="gotoDetail" src="./images/in_btn.png" class="guide-in" mode="widthFix"></image>
-    <image src="./images/Or.png" class="guide-or" mode="widthFix"></image>
-    <image bindtap="gotoContact" src="./images/jump.png" class="guide-jump" mode="widthFix"></image>
-  </view>
-</view>
