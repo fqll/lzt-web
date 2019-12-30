@@ -32,5 +32,6 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
