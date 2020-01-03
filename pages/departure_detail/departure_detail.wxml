@@ -1,4 +1,7 @@
 <!--pages/departure_detail/departure_detail.wxml-->
+<!-- 导航 -->
+<navbar bind:backevent="detailBack" page-name="离职详情"></navbar>
+<!-- 内容 -->
 <view wx:if="{{!isOver && activeTab !== 'join'}}" class="detail-wrap">
   <view class="detail-head">
     <view class="detail-name">{{detailData.departureInfo.employeeName}}</view>
@@ -45,7 +48,7 @@
       <text class="record-time">{{detailData.departureAuditList[0].operateTime}}</text>
     </view>
 
-    <block wx:if="{{detailData.departureAuditList.length > 1}}" wx:for="{{detailData.departureAuditList}}" wx:key="{{index}}">
+    <block wx:if="{{detailData.departureAuditList.length > 1}}" wx:for="{{detailData.departureAuditList}}" wx:key="index">
       <block wx:if="{{index > 0}}">
         <view class="record-line">
 
@@ -106,13 +109,12 @@
     <text class="word-title">离职证明</text>
     <view class="word-content">
       <view>
-        <text class="char-padding"></text>兹有 {{detailData.departureInfo.employeeName}} （{{detailData.departureInfo.gender}}）（身份证号码 : {{detailData.departureInfo.idCardNo}}）， 原系我司 {{detailData.departureInfo.department}} 部门 {{detailData.departureInfo.employeePost}}， 在岗时间自 {{detailData.departureInfo.entryDate}}到
-        {{detailData.departureInfo.departureDate}} 日止， 因{{detailData.departureInfo.departureReasonDesc}}， 于{{detailData.departureInfo.submitDate}}提出离职， 并于 {{detailData.departureInfo.departureDate}} 日与我公司正式解除劳动合同，无任何劳动纠纷
+        <text class="char-padding"></text>兹有<text class="key-word">{{detailData.departureInfo.employeeName}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.gender}}</text>身份证号码 :<text class="key-word">{{detailData.departureInfo.idCardNo}}</text>，原系我司<text class="key-word">{{detailData.departureInfo.department}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.employeePost}}</text>职位，在岗时间自<text class="key-word">{{detailData.departureInfo.entryDate}}</text>到<text class="key-word">{{detailData.departureInfo.departureDate}}</text>日止, 因<text class="key-word">{{detailData.departureInfo.departureReasonDesc}}</text>, 于<text class="key-word">{{detailData.departureInfo.submitDate}}</text>提出离职, 并于<text class="key-word">{{detailData.departureInfo.departureDate}}</text>日与我公司正式解除劳动合同，无任何劳动纠纷
       </view>
-      <text><text class="char-padding"></text>（离职证明遗失不补且涂改无效，请妥善保管）</text>
-      <text class="prove"><text class="char-padding"></text>特此证明</text>
-      <text class="right-align">{{detailData.companyInfo.companyName}}</text>
-      <text class="right-align right-time">{{detailData.departureInfo.departureDate}}</text>
+      <text class="prove para">特此证明</text>
+      <text class="para">(离职证明遗失不补且涂改无效，请妥善保管)</text>
+      <text class="right-align para">{{detailData.companyInfo.companyName}}</text>
+      <text class="right-align right-time para">{{detailData.departureInfo.departureDate}}</text>
     </view>
 
     <view wx:if="{{canAttend}}" class="btn-bottom-wrap">

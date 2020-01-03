@@ -43,29 +43,38 @@ Page({
     isFollowed: false,
     canConcern: false,
     setRead: false,
+    backmakeup: false
   },
   onLoad: function(option) {
     console.log(option)
-    wx.setNavigationBarTitle({
-      title: '审批详情'
-    })
+    // 计算导航
+    // this.countNav()
+    // wx.setNavigationBarTitle({
+    //   title: '详情'
+    // })
 
-    if (option.mode && option.mode === 'isGuide') {
-      this.data.isGuide = true
-    } else {
-      this.data.isGuide = false
-    }
-    this.setData({
-      isGuide: this.data.isGuide
-    })
-
-    if (option.guideStatus) {
+    if (option.backmakeup === 'show') {
       this.setData({
-        'guide.entryGuide': false,
-        'guide.guideStatus': option.guideStatus,
-        'guide.type': 'entry'
+        backmakeup: true
       })
     }
+
+    // if (option.mode && option.mode === 'isGuide') {
+    //   this.data.isGuide = true
+    // } else {
+    //   this.data.isGuide = false
+    // }
+    // this.setData({
+    //   isGuide: this.data.isGuide
+    // })
+
+    // if (option.guideStatus) {
+    //   this.setData({
+    //     'guide.entryGuide': false,
+    //     'guide.guideStatus': option.guideStatus,
+    //     'guide.type': 'entry'
+    //   })
+    // }
 
     // 如果是下家查看已加入的员工，设置joindone
     if (option.joindone && option.joindone === 'done') {
@@ -80,7 +89,7 @@ Page({
       })
     }
     // 获取权限
-    this.getAuthorityName()
+    this.checkUserInfo()
     // 查询下拉列表配置
     apiTest.getSelectList({
         type: 'sendType'
@@ -94,12 +103,30 @@ Page({
           ways: this.data.ways
         })
       })
-    // 
+    
+    this.data.activeTab = option.activetab
+    this.data.departureId = option.departureid
+    // 如果是扫码进的
+    if (option.scene) {
+      // 小程序扫图片码直接进
+      let scene = decodeURIComponent(option.scene)
+      console.log('获取到参数')
+      console.log(scene)
+      let array = scene.split('&')
+      array.forEach((el, index) => {
+        let array2 = el.split('=')
+        if (array2[0] === 't') {
+          this.data.activeTab = array2[1]
+        } else if (array2[0] === 'i') {
+          this.data.departureId = array2[1]
+        }
+      })
+    }
 
     this.setData({
       myId: app.globalData.userInfo.userInfo.id,
-      activeTab: option.activetab,
-      departureId: option.departureid
+      activeTab: this.data.activeTab,
+      departureId: this.data.departureId
     })
     // 如果是分享过来的，需验证
     if (this.data.activeTab === 'share') {
@@ -166,6 +193,22 @@ Page({
         }
         //
       })
+  },
+  detailBack: function () {
+    if (this.data.backmakeup) {
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2];
+      prevPage.setData({
+        formId: this.data.departureId
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   makeSure: function (e) {
     let that = this
@@ -367,8 +410,23 @@ Page({
       }
     }
   },
+  checkUserInfo: function () {
+    let that = this
+    if (app.globalData.userInfo) {
+      console.log('拿到')
+      console.log(app.globalData.userInfo)
+      if (this.data.userInfoTimer) {
+        clearInterval(this.data.userInfoTimer);
+        this.getAuthorityName()
+      }
+    } else {
+      console.log('循环')
+      this.data.userInfoTimer = setInterval(() => {
+        that.checkUserInfo()
+      }, 500)
+    }
+  },
   getAuthorityName: function() {
-    console.log(app.globalData.userInfo)
     app.globalData.userInfo.companyInfoList.forEach((el, index) => {
       if (el.companyId == wx.getStorageSync('companyId')) {
         this.setData({
@@ -518,7 +576,7 @@ Page({
       })
         .then((res) => {
           wx.showToast({
-            title: '分享成功',
+            title: '发送成功',
             duration: 1000
           })
           setTimeout(() => {
@@ -534,10 +592,10 @@ Page({
       return {
         title: '离职证明',
         path: '/pages/departure_detail/departure_detail?departureid=' + this.data.departureId + '&activetab=share',
-        imageUrl: "./images/bg.jpg",
+        imageUrl: "./images/bg.png",
         success: (res) => {
           wx.showToast({
-            title: '分享成功',
+            title: '发送成功',
             duration: 1000
           })
           setTimeout(() => {

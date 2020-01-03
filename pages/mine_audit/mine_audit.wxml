@@ -1,7 +1,7 @@
 <view>
   <cate-tab highlight="{{hightlight}}" redShow="{{redShow}}" activeId="{{activeId}}" tabs="{{tabs}}" bind:changetab="changetab"></cate-tab>
   <view class="list-wrap">
-    <view wx:if="{{guide.guideStatus != 1}}" data-redcircle="{{item.readStatusDesc}}"  data-index="{{index}}" data-departureid="{{item.departureId}}" bindtap="gotoDetail" wx:for="{{showList}}" wx:key="{{index}}" class="{{isGuide && (guide.guideStatus == 2 || guide.guideStatus == 3) && index==0 ? 'high-list each-list': 'each-list'}}">
+    <view wx:if="{{guide.guideStatus != 1}}" data-redcircle="{{item.readStatusDesc}}"  data-index="{{index}}" data-departureid="{{item.departureId}}" bindtap="gotoDetail" wx:for="{{showList}}" wx:key="index" class="{{isGuide && (guide.guideStatus == 2 || guide.guideStatus == 3) && index==0 ? 'high-list each-list': 'each-list'}}">
       <!-- 小红点 -->
       <text wx:if="{{item.readStatusDesc === '未读'}}" class="red-circle"></text>
       <!--  -->

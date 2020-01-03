@@ -1,5 +1,5 @@
 <view class="cate-wrap">
-  <view wx:for="{{tabs}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="changeTab" class="{{highlight[index]?'hightlight': ''}} {{activeId === item.id ? 'active': ''}}  each-cate">
+  <view wx:for="{{tabs}}" wx:key="index" data-id="{{item.id}}" bindtap="changeTab" class="{{highlight[index]?'hightlight': ''}} {{activeId === item.id ? 'active': ''}}  each-cate">
     <view class="text-wrap">
       <text class="tab-text">{{item.name}}</text>
       <text wx:if="{{item.desc}}" class="tab-desc">{{item.desc}}</text>

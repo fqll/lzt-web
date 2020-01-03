@@ -1,5 +1,6 @@
 /* pages/departure_detail/departure_detail.wxss */
 @import '/common/css/normal.wxss';
+@import '/common/css/common_nav.wxss';
 @import './word_spe.wxss';
 
 page {

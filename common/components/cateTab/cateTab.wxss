@@ -28,6 +28,11 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.each-cate:last-child .text-wrap{
+  border-right: none;
+}
+
 .cate-wrap .active .tab-text{
   color: #3196ff;
 }

@@ -332,32 +332,38 @@ Page({
         this.guide.startSpeaking('小离希望这份离职手续由你亲自审批呢~')
       } else {
         // 通过验证，先生成预览
-        let id = wx.getStorageSync('companyId')
-        let name = ''
-        app.globalData.userInfo.companyInfoList.forEach((el, index) => {
-          if (id == el.companyId) {
-            name = el.companyName
-          }
-        })
-        this.data.previewData = {
-          employeeName: e.detail.value.name,
-          gender: this.data.genderIndex === '' ? '' : this.data.genderIndex == 0 ? '男' : '女',
-          idCardNo: e.detail.value.cardNo,
-          department: e.detail.value.depart,
-          employeePost: e.detail.value.post,
-          entryDate: this.data.entryDate,
-          departureDate: this.data.departureDate,
-          departureReasonDesc: this.data.reasonOneData[this.data.reasonOneIndex].name,
-          submitDate: this.data.applyDate,
-          departureDate: this.data.departureDate,
-          companyName: name,
-          departureDate: this.data.departureDate
-        }
+        // let id = wx.getStorageSync('companyId')
+        // let name = ''
+        // app.globalData.userInfo.companyInfoList.forEach((el, index) => {
+        //   if (id == el.companyId) {
+        //     name = el.companyName
+        //   }
+        // })
+        // this.data.previewData = {
+        //   employeeName: e.detail.value.name,
+        //   gender: this.data.genderIndex === '' ? '' : this.data.genderIndex == 0 ? '男' : '女',
+        //   idCardNo: e.detail.value.cardNo,
+        //   department: e.detail.value.depart,
+        //   employeePost: e.detail.value.post,
+        //   entryDate: this.data.entryDate,
+        //   departureDate: this.data.departureDate,
+        //   departureReasonDesc: this.data.reasonOneData[this.data.reasonOneIndex].name,
+        //   submitDate: this.data.applyDate,
+        //   departureDate: this.data.departureDate,
+        //   companyName: name,
+        //   departureDate: this.data.departureDate
+        // }
+        // this.setData({
+        //   previewData: this.data.previewData,
+        //   eData: e,
+        //   previewShow: true
+        // })
+        
+        // 直接创建成功
         this.setData({
-          previewData: this.data.previewData,
-          eData: e,
-          previewShow: true
+          eData: e
         })
+        this.sureSubmit()
       }
     } else if (e.detail.target.id === 'save') {
       // 整合aduitList，copyList
@@ -376,7 +382,6 @@ Page({
         })
       })
       //
-      console.log(this.data.genderIndex)
       apiTest.createNewDeparture({
           saveType: 0,
           mode: '',
@@ -472,16 +477,13 @@ Page({
               'guide.guideStatus': '2'
             })
           }
-          wx.navigateBack({
-            delta: 1
-          })
-          if (this.data.auditIndex == 1 && auditUserList.length > 0) {
-            // wx.navigateTo({
-            //   url: '../departure_detail/departure_detail?activetab=wait&departureid=' + res,
-            // })
+          if (this.data.auditIndex == 1) {
+            wx.navigateBack({
+              delta: 1
+            })
           } else {
             wx.navigateTo({
-              url: '../departure_detail/departure_detail?activetab=send&departureid=' + res,
+              url: '../departure_detail/departure_detail?activetab=send&departureid=' + res + '&backmakeup=show',
             })
           }
         }, 1000)

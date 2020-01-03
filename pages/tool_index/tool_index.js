@@ -237,7 +237,7 @@ Page({
     return {
       title: '离职通',
       path: '/pages/loading_index/loading_index',
-      imageUrl: "./images/share.jpg",
+      imageUrl: "./images/share.png",
       success: (res) => { }
     }
   },

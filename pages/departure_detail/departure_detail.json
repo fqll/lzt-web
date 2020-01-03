@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "guide-wrap": "../../common/components/guideWrap/guideWrap",
-    "key-wrap": "../../common/components/keyWrap/keyWrap"
-  }
+    "key-wrap": "../../common/components/keyWrap/keyWrap",
+    "navbar": "../../common/components/navBar/navBar"
+  },
+  "navigationStyle": "custom"
 }

@@ -8,14 +8,25 @@
   width: 100%;
   display: block;
   text-align: center;
-  font-size: 48rpx;
-  color: rgb(37, 37, 37);
+  font-size: 36rpx;
+  color: #333333;
   font-weight: bold;
 }
 
 .word-content {
   width: 100%;
   margin-top: 50rpx;
+  font-size: 28rpx;
+  color: #333333
+}
+.word-content .key-word{
+  font-weight: bold;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+  /* display: inline-block; */
+  text-decoration: underline  #333333;
+  /* border-bottom: 2rpx solid #333333 */
+
 }
 
 .word-content .char-padding {
@@ -29,14 +40,19 @@
   word-break: break-all
 }
 
-.word-content text {
+.word-content .para {
   display: block;
-  line-height: 55rpx;
+  line-height: 50rpx;
 }
 
 .right-align {
   text-align: right;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #333333
+}
+.right-align:last-child {
+  margin-top: 10rpx;
 }
 
 .word-wrap image {
@@ -47,9 +63,6 @@
 }
 
 .prove {
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
-.right-time {
-  margin-right: 40rpx;
-}
