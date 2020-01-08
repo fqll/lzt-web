@@ -1,20 +1,24 @@
 <view>
   <view class="list-wrap">
     <view wx:key="{{index}}" wx:for="{{companyList}}" class="each-list">
-      <text wx:if="{{item.companyId == nowCompanyId}}">{{item.companyName}}</text>
-      <text data-companyid="{{item.companyId}}" bindtap="changeCompany" wx:else>{{item.companyName}}<text>（点击切换）</text></text>
-      <view wx:if="{{item.isDefault == 1}}" class="main">主企业</view>
-      <view data-companyid="{{item.companyId}}" bindtap="setMain" wx:else>设为主企业</view>
+      <view wx:if="{{item.companyId == nowCompanyId}}" class="status-circle status-circle-active"></view>
+      <view wx:else class="status-circle"></view>
+      <text>{{item.companyName}}</text>
+      <view class="set-warp">
+        <view wx:if="{{item.companyId != nowCompanyId}}" style="margin-right:10rpx;" class="set-main" data-companyid="{{item.companyId}}" bindtap="changeCompany">点击切换</view>
+        <view wx:if="{{item.isDefault == 1}}" class="main">主企业</view>
+        <view class="set-main" data-companyid="{{item.companyId}}" bindtap="setMain" wx:else>设为主企业</view>
+      </view>
     </view>
   </view>
 
   <view class="link-wrap">
-    <text bindtap="gotoContact">关联企业</text> 
+    <button bindtap="gotoContact">关联企业</button>
     <text bindtap="gotoCreate">注册企业</text>
   </view>
 
-  <view class="tool-btn">
+  <!-- <view class="tool-btn">
     <view bindtap="gotoTool">工作台</view>
     <!-- <view bindtap='gotoMine'>我的</view> -->
-  </view>
+  <!-- </view> --> 
 </view>

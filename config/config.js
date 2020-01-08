@@ -18,5 +18,5 @@ if (wx.getAccountInfoSync) {
 } 
 module.exports= {
   appId: appId,
-  apiUrl_wx: apiAuditUrl_wx
+  apiUrl_wx: apiProUrl_wx
 }

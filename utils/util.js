@@ -33,13 +33,13 @@ const cloneDeep = function (obj) {
 // 返回颜色
 const colorBack = function (text) {
   if (text === '待审批') {
-    return '#FF9966'
+    return '#f12b47'
   } else if (text === '同意离职' || text === '已办结') {
-    return '#37A34B'
+    return '#4885fa'
   } else if (text === '已撤回') {
     return '#999999'
   } else if (text === '拒绝离职' || text === '审批退回') {
-    return 'rgba(255, 0, 0, 0.709803921568627)'
+    return '#f12b47'
   }
 };
 const getProcessMode = function () {

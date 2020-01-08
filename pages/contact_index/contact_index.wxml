@@ -1,11 +1,11 @@
 <view>
-  <view class="search-wrap">
+  <view class="common-search">
     <image bindtap='searchCompany' mode="widthFix" src="../../common/images/icon_search.png"></image>
     <input maxlength='20' required="required" value="" bindinput="keyWordsInput" placeholder='请输入企业名称或邀请码'></input>
   </view>
 
   <view wx:if="{{!hasSearched}}" class="none-wrap">
-    <text>请输入您搜寻的企业，</text>
+    <text>请输入您搜寻的企业</text>
     <text>请直接搜索企业邀请码关联企业或</text>
     <text bindtap="gotoCreate" class="link-text">点击注册</text>
   </view>

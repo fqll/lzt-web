@@ -1,14 +1,14 @@
 @import '/common/components/cateTab/cateTab.wxss';
 @import '/common/css/normal.wxss';
 .list-wrap{
-  width: 90%;
-  margin-left: 5%;
-  margin-top: 20rpx;
+  width: 100%;
+  /* margin-left: 5%; */
+  /* margin-top: 20rpx; */
   border-top: 1px solid rgba(228, 228, 228, 1)
 }
 .each-list{
   width: 100%;
-  padding: 20rpx 10rpx;
+  padding: 40rpx 40rpx;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -20,45 +20,70 @@
   height: 90rpx;
   text-align: center;
   line-height: 90rpx;
-  border-radius: 90rpx;
-  background-color: rgb(22,155,213);
+  border-radius: 6rpx;
+  background-color: #293949;
   color: white;
-  font-size: 24rpx;
+  font-size: 22rpx;
 }
 .each-desc{
   font-size: 24rpx;
-  color: #999999;
+  color: #666666;
   margin-left: 20rpx;
+  margin-top: -10rpx;
 }
 .each-desc text{
   display: block;
-  line-height:40rpx;
 }
 .each-desc text:first-child{
-  font-size:28rpx;
-  color: black;
+  font-size:30rpx;
+  color: #333333;
+  font-weight: 800;
+  margin-bottom: 15rpx;
 }
-.each-desc text:last-child{
+.each-desc view:nth-child(2) {
+  margin-bottom: 15rpx;
+}
+.sign-wrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.sign-text{
+  width: 10rpx;
+  height:10rpx;
+  border-radius: 10rpx;
+  background-color: #4885fa;
+  margin-right: 15rpx;
+}
+/* .each-desc text:last-child{
   color: #FF9966;
   margin-top: 10rpx;
-}
+} */
 .each-time{
   font-size: 24rpx;
-  color: #999999;
+  color: #666666;
   position: absolute;
-  right: 10rpx;
+  margin-top: -5rpx;
+  right: 4%;
+}
+.absoulte-status{
+  font-size: 28rpx;
+  position: absolute;
+  right: 8%;
+  top: 78rpx;
+  font-weight: 900
 }
 .each-button{
   padding: 10rpx 20rpx;
   text-align: center;
   border-radius: 10rpx;
-  border: 1px solid rgba(69, 170, 48, 1);
+  border: 1px solid #4885fa;
   background-color: white;
   font-size: 24rpx;
-  color: rgba(69, 170, 48, 1);
+  color: #4885fa;
   position: absolute;
-  bottom: 40rpx;
-  right: 10rpx;
+  bottom: 20rpx;
+  right: 4%;
 }
 
 .red-circle {

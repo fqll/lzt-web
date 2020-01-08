@@ -28,18 +28,18 @@
     <scroll-view scroll-x="true" wx:if="{{!isShow}}" class="canvas-column">
       <canvas style='height:450px' id="columnCanvas" canvas-id="columnCanvas"></canvas>
     </scroll-view>
-    
+
   </view>
 
   <view class="stock-wrap" wx:elif="{{activeId === 'stock'}}">
     <view class="page-wrap">
       <text class="text-already">已离职<text> {{peopleNum}} </text>人</text>
-      <view class="search-wrap">
+      <view style="width: 100%;margin: 0" class="common-search">
         <image bindtap='searchStock' mode="widthFix" src="../../common/images/icon_search.png"></image>
         <input maxlength='20' required="required" value="" bindinput="keyWordsInput" placeholder='搜索员工名字'></input>
       </view>
 
-      <view class="table-view">
+      <view class="common-table-view">
         <view class="head">
           <view>员工姓名</view>
           <view>职务</view>

@@ -1,11 +1,12 @@
 <view>
   <view id="message">
+    <view class="msg-desc">正在与“{{chatDesc.companyName}}公司”关于员工“<text>{{chatDesc.name}}</text>”的背调沟通</view>
     <view wx:key="{{index}}" wx:for="{{chatData.chatList}}">
       <view wx:if="{{item.userId === chatData.selfInfo.id}}" class="ask">
         <view class="msg">
           <image mode="widthFix" src="./images/avator_default.png" alt=""></image>
           <!-- <image wx:else mode="widthFix" src="{{user.userInfo.portraitUrl}}" alt=""></image> -->
-          <text>{{item.chatContent}}</text>
+          <text class="box2">{{item.chatContent}}</text>
         </view>
         <view wx:if="{{index === lastIndex}}" class="time">{{lastTime}}</view>
       </view>
@@ -14,7 +15,7 @@
         <view class="msg">
           <image mode="widthFix" src="./images/avator_ori.png" alt=""></image>
           <!-- <text class="name">番茄来了（BOSS）</text> -->
-          <text>{{item.chatContent}}</text>
+          <text class="box1">{{item.chatContent}}</text>
         </view>
         <view  wx:if="{{index === lastIndex}}" class="time">{{lastTime}}</view>
       </view>

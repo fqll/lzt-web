@@ -1,5 +1,22 @@
 @import '/common/css/normal.wxss';
 @import '../../common/components/inputModal/inputModal.wxss';
+@import '/common/css/common_search.wxss';
+@import '/common/css/common_tabview.wxss';
+/* table */
+.common-table-view{
+  margin-top: 30rpx;
+}
+.common-table-view .head view{
+  width: 25%;
+}
+.common-table-view .content view{
+  width: 25%;
+}
+.common-table-view .head,.common-table-view .content{
+  width: 100%
+}
+
+/*  */
 .canvas-wrap{
   width: 100%;
   display: flex;
@@ -74,15 +91,20 @@
 
 /* stock */
 .page-wrap{
-  width: 90%;
-  margin-left: 5%;
+  width: 84%;
+  margin-left: 8%;
 }
 .text-already{
   color: #333333;
-  font-size: 24rpx;
+  font-size: 28rpx;
+  display: block;
+  height: 90rpx;
+  line-height: 90rpx;
 }
 .text-already text{
-  color: #FF0000
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ec3535
 }
 .search-wrap{
   width: 100%;

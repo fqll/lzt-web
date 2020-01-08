@@ -9,6 +9,10 @@ const app = getApp()
 
 Page({
   data: {
+    chatDesc: {
+      companyName: '',
+      name: ''
+    },
     guide: {
       type: 'entry',
       clickLeft: '',
@@ -83,6 +87,24 @@ Page({
       chatData: this.data.chatData
     })
   },
+  setChatDesc: function () {
+    if (this.data.nameCanSee) {
+      this.data.chatDesc.companyName = this.data.chatData.chatTitle
+    } else {
+      this.data.chatDesc.companyName = '离职员工的下家'
+    }
+    apiTest.getDepartureInfo({
+      mode: '',
+      id: this.data.departureId,
+      userId: app.globalData.userInfo.userInfo.id
+    })
+      .then((res) => {
+        this.data.chatDesc.name = res.departureInfo.employeeName
+        this.setData({
+          chatDesc: this.data.chatDesc
+        })
+      })
+  },
   // 刷新聊天数据
   upDateChatData: function () {
     return new Promise((resolve, reject) => {
@@ -102,6 +124,7 @@ Page({
             wx.setNavigationBarTitle({
               title: this.data.nameCanSee ? '正在与' + this.data.chatData.chatTitle + '公司聊天' : '正在与离职员工的下家公司聊天'
             })
+            this.setChatDesc()
             this.data.justOnce = false
           }
           // 设置头像数据
@@ -112,7 +135,7 @@ Page({
             this.data.lastTime = this.data.chatData.chatList[this.data.lastIndex].chatTime
             this.data.lastTime = this.data.lastTime.replace(/\-/g, "/")
             let date = new Date(this.data.lastTime)
-            this.data.lastTime = (date.getMonth() + 1 > 9 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)) + '/' + (date.getDate() > 9 ? date.getDate() : '0' + date.getDate()) + ' ' + ' ' + ' ' + (date.getHours() > 9 ? date.getHours() : '0' + date.getHours()) + ':' + (date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes())
+            this.data.lastTime = (date.getMonth() + 1 > 9 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)) + '月' + (date.getDate() > 9 ? date.getDate() : '0' + date.getDate()) + '日' + ' ' + ' ' + ' ' + (date.getHours() > 12 ? '下午':'上午') + (date.getHours() > 9 ? date.getHours() : '0' + date.getHours()) + ':' + (date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes())
             this.data.firstPull = false
             this.setData({
               lastIndex: this.data.lastIndex,

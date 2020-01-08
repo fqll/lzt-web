@@ -1,44 +1,93 @@
 .list-wrap{
-  width: 90%;
-  margin-left: 5%;
-  margin-top: 80rpx;
+  width: 100%;
+  border-top: 13rpx solid #f2f2f2
 }
 .each-list{
-  padding: 20rpx 0;
-  border-bottom: 1px solid rgba(228, 228, 228, 1);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx 4%;
+  border-bottom: 1px solid #f2f2f2;
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  align-items: center;
+  position: relative
 }
 .each-list text{
   font-size: 28rpx;
-  color: black;
+  color: #333333;
+  margin-left: 12rpx;
+  font-weight: bold
 }
 .each-list text text{
   color: rgba(55, 163, 75, 1);
 }
-.each-list view{
-  padding: 2rpx 10rpx;
-  border-radius: 10rpx;
-  font-size: 24rpx;
-  border: 1px solid rgba(55, 163, 75, 1);
-  color: rgba(55, 163, 75, 1)
+.status-circle{
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+  background-color: #999999
+}
+.status-circle-active{
+  background-color: #4885fa
+}
+.set-warp{
+  position: absolute;
+  right: 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.each-list .set-main{
+  width: 130rpx;
+  height: 40rpx;
+    text-align: center;
+  line-height: 40rpx;
+  border-radius: 40rpx;
+  background-color: white;
+  color: #4885fa;
+  border: 1px solid #4885fa;
+  font-size: 22rpx;
+  font-weight: bold
 }
 .each-list .main{
-  background-color: rgba(55, 163, 75, 1);
-  color: white
+  width: 130rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 40rpx;
+  background-color: #4885fa;
+  color: white;
+  font-size: 22rpx;
+  font-weight: bold
 }
 .link-wrap{
-  margin-top: 80rpx;
-  margin-left: 5%;
-  font-size: 28rpx;
+  width: 92%;
+  margin-top: 60rpx;
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+.link-wrap button{
+  width: 100%;
+  height: 80rpx;
+  border-radius:8rpx;
+  background-color: #4885fa;
+  color: white;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 80rpx;
 }
 .link-wrap text{
   width: auto;
+  text-align: center;
   display: table;
-  color: #996699;
-  border-bottom: 1px solid #996699;
-  margin-bottom: 30rpx;
+  color: #999999;
+  border-bottom: 1px solid #999999;
+  font-size: 28rpx;
+  margin-top: 28rpx;
+  font-weight: bold
 }
 .tool-btn{
   position: fixed;

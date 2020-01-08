@@ -8,11 +8,12 @@
       <view class="each-name">{{item.employeeName}}</view>
       <view class="each-desc">
         <text>离职证明审批</text>
-        <text>离职原因: {{item.departureReasonDesc}}</text>
-        <text>员工最后工作日期: {{item.departureDate}}</text>
-        <text style="color: {{item.color}}">{{item.auditStatusDesc}}</text>
+        <view class="sign-wrap"><view class="sign-text"></view>离职原因： {{item.departureReasonDesc}}</view>
+        <view  class="sign-wrap"><view class="sign-text"></view>最后工作日期： {{item.departureDate}}</view>
+        <!-- <text style="color: {{item.color}}">{{item.auditStatusDesc}}</text> -->
       </view>
       <text class="each-time">{{item.submitDate}}</text>
+      <text class="absoulte-status" style="color: {{item.color}}">{{item.auditStatusDesc}}</text>
       <block wx:if="{{activeId === 'send'}}">
         <!-- <button data-index="{{index}}" data-departureid="{{item.departureId}}" wx:if="{{!item.followStatus && isBoss}}" catchtap="setContact" class="each-button">关注</button>
         <button wx:elif="{{item.followStatus && !item.chatAble && isBoss}}" class="each-button">已关注</button> -->

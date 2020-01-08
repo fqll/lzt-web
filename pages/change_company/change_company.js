@@ -24,6 +24,9 @@ Page({
     })
     this.getList()
   },
+  onPullDownRefresh: function () {
+    this.getList()
+  },
   getList: function() {
     return new Promise((resolve, reject) => {
       // 获取会员信息

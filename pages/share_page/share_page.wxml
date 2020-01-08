@@ -26,10 +26,10 @@
   <view wx:for="{{applyList}}" wx:key="{{index}}" class="each-list">
   <view class="wx-list">
     <image mode="widthFix" src="{{item.portraitUrl}}"></image>
-    <text>{{item.wxNickName}}</text>
+    <!-- <text>{{item.wxNickName}}</text> -->
   </view>
   <view class="text-list">
-    <text>{{item.nickName}}</text>
+    <view>{{item.nickName}}<text>({{item.wxNickName}})</text></view>
     <text>{{item.applyTime}}</text>
   </view>
   <view class="btns">
@@ -75,7 +75,7 @@
       </view>
 
       <checkbox-group name="checkboxIds" class="radio-group" bindchange="checkboxChange">
-        <checkbox wx:key="{{index}}" class="each-line" wx:for="{{items}}" value="{{item.value}}" checked="{{formData.authorityList[index].check}}">
+        <checkbox color="#4885fa" wx:key="{{index}}" class="each-line" wx:for="{{items}}" value="{{item.value}}" checked="{{formData.authorityList[index].check}}">
           <view>
             <text>{{item.title}}</text>
             <text>{{item.desc}}</text>
@@ -84,9 +84,11 @@
       </checkbox-group>
 
       <view class="buttons-wrap">
-        <button bindtap='closeSetting'>取消</button>
-        <button formType="submit">确定</button>
+        <!-- <button bindtap='closeSetting'>取消</button> -->
+        <button formType="submit">确认</button>
       </view>
     </form>
   </view>
+  <image bindtap='closeSetting' class="close-btn" mode="widthFix" src="./images/close.png"></image>
+
 </view>

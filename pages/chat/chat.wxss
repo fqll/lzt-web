@@ -10,36 +10,46 @@ input {
 
 body {
   margin: 0 auto;
-  background: #f1f1f1;
+  background: #f2f2f2;
   color: #333;
 }
 
 
 #message {
-  background-color: #f1f1f1;
+  background-color: #f2f2f2;
   padding: 40rpx;
   padding-bottom: 200rpx
 }
 
-.time {
-  font-size: 24rpx;
-  color: #999;
+.msg-desc{
+  width: 100%;
   text-align: center;
-  margin-bottom:30rpx;
-  margin-top:30rpx;
+  font-size: 22rpx;
+  color: #999999;
+  margin-bottom: 40rpx;
+}
+.msg-desc text{
+  color: #4885fa
+}
+
+.time {
+  font-size: 22rpx;
+  color: #999999;
+  text-align: center;
+  margin-bottom:40rpx;
+  margin-top:40rpx;
 }
 
 #footer {
   position: fixed;
   bottom: 0;
-  height: 120rpx;
-  background-color: #fff;
+  height: 105rpx;
+  background-color: #e9e9e9;
   width: 100%;
-  border-top: 1px solid #ddd;
-  padding-top: 20rpx;
   display: flex;
   flex-direction: row;
-  align-items: top;
+  align-items: center;
+  justify-content: center
 }
 
 #footer image {
@@ -49,28 +59,26 @@ body {
 
 #footer input {
   margin-left: 4rpx;
-  width: 480rpx;
-  height: 50rpx;
-  border-radius: 10rpx;
-  border: 0.2rpx solid #ddd;
-  position: absolute;
-  right: 180rpx;
+  width: 546rpx;
+  height: 72rpx;
+  border-radius: 8rpx;
+  background-color: white;
   padding-left: 20rpx;
   font-size: 26rpx;
 }
 
 #footer text {
-  width: 120rpx;
-  height: 50rpx;
-  font-size: 24rpx;
-  color: #fff;
-  line-height: 50rpx;
+  width: 114rpx;
+  height: 60rpx;
   text-align: center;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10rpx;
   /* background-color: #3296fa; */
-  background-color:  rgb(152,225,101);
-  border-radius: 10rpx;
-  position: absolute;
-  right: 30rpx;
+  background-color:  #4885fa;
+  border-radius: 8rpx;
 }
 
 .reply:after, .ask:after, .msg:after {
@@ -92,33 +100,80 @@ body {
   background: none;
 }
 
-.ask .msg text{
-  background-color: rgb(152,225,101)
-}
 
 .msg > image {
-  width: 90rpx;
+  width: 76rpx;
   float: left;
+  border-radius: 8rpx;
 }
 
 .reply .msg > text {
   /* top: 60rpx; */
   left:30rpx;
-  border-radius: 20rpx;
+  background: #fff;
+  color: #333333;
 }
 
 .msg > text {
   float: left;
   padding: 20rpx;
-  background: #fff;
-  font-size: 24rpx;
+  background-color: #4885fa;
+  color: white;
+  font-size: 30rpx;
   position: relative;
-  border-radius: 20rpx;
+  border-radius: 8rpx;
   max-width: 400rpx;
   box-sizing: border-box;
   word-wrap: break-word;
   right: 20rpx;
 }
+
+.box1:before{
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    left: -10px;
+    top: 10px;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #fff;
+}
+.box1:after{
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    left: -10px;
+    top: 13px;
+    border-bottom: 7px solid transparent;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #fff;
+}
+
+.box2:before{
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    right: -10px;
+    top: 10px;
+    border-left: 10px solid #4885fa;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.box2:after{
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    right: -10px;
+    top: 13px;
+    border-left: 7px solid #4885fa;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+}
+
 .msg_input {
   position: absolute;
   /* background: url(./../images/msg-input.png) no-repeat; */

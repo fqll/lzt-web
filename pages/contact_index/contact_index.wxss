@@ -1,3 +1,4 @@
+@import '/common/css/common_search.wxss';
 .search-wrap{
   width: 90%;
   height: 60rpx;
@@ -23,17 +24,24 @@
 .none-wrap{
   width: 100%;
   margin-top: 80rpx;
-  font-size: 30rpx;
-  color: #a3a4a6
+  font-size: 29rpx;
+  color: #999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center
 }
 .none-wrap text{
   text-align: center;
   display: block
 }
 .none-wrap .link-text{
-  text-decoration: underline;
-  color: #996699;
-  font-size: 35rpx;
+  width: auto;
+  display: inline-block;
+  color: #4885fa;
+  padding-bottom: 5rpx;
+  border-bottom: 1px solid #4885fa;
+  font-size: 32rpx;
+  font-weight: bold;
   margin-top: 20rpx;
 }
 .list{
