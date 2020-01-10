@@ -24,8 +24,14 @@ Page({
     })
     this.getList()
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.getList()
+  },
+  pageBack: function() {
+    console.log('返回')
+    wx.redirectTo({
+      url: '../tool_index/tool_index?companyId=' + wx.getStorageSync('companyId'),
+    })
   },
   getList: function() {
     return new Promise((resolve, reject) => {
@@ -45,7 +51,7 @@ Page({
         })
     })
   },
-  changeCompany: function (e) {
+  changeCompany: function(e) {
     let id = e.currentTarget.dataset.companyid
     wx.setStorageSync('companyId', id)
     app.globalData.findGoCompany(id, 'redirectTo')
@@ -76,14 +82,14 @@ Page({
       url: '../mine_index/mine_index',
     })
   },
-  gotoContact: function () {
+  gotoContact: function() {
     wx.redirectTo({
-      url: '../contact_index/contact_index',
+      url: '../contact_index/contact_index?prepage=changecompany',
     })
   },
-  gotoCreate: function () {
+  gotoCreate: function() {
     wx.redirectTo({
-      url: '../create_company/create_company',
+      url: '../create_company/create_company?prepage=changecompany',
     })
   }
 })

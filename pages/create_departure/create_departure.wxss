@@ -2,6 +2,13 @@
 @import '/common/css/common_form.wxss';
 @import './word_preview.wxss';
 
+.save-red{
+  width: 30rpx;
+  position: absolute;
+  right: 0;
+  top:0;
+}
+
 .create-form-btns{
   width: 100%;
   display: flex;
@@ -19,7 +26,8 @@
   border-radius: 8rpx;
   font-size: 32rpx;
   font-weight: bold;
-  margin-left: 0
+  margin-left: 0;
+  position: relative
 }
 
 .save-box, .save-submit{

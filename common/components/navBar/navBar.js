@@ -33,7 +33,13 @@ Component({
   methods: {
     //回退
     navBack: function () {
+      console.log('触发')
       this.triggerEvent('backevent')
     },
+    gotohouse: function () {
+      wx.redirectTo({
+        url: '../loading_index/loading_index',
+      })
+    }
   }
 })

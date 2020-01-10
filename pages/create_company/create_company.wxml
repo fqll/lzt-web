@@ -1,3 +1,5 @@
+<!-- 导航 -->
+<navbar bind:backevent="pageBack" page-name="注册企业"></navbar>
 <view class="common-form">
   <view class="form-title">
     <text>申请成功后需1~3个工作日审核</text>

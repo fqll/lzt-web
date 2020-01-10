@@ -1,3 +1,5 @@
+<!-- 导航 -->
+<navbar bind:backevent="pageBack" page-name="切换企业"></navbar>
 <view>
   <view class="list-wrap">
     <view wx:key="{{index}}" wx:for="{{companyList}}" class="each-list">

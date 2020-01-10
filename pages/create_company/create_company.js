@@ -23,11 +23,17 @@ Page({
     },
     auditIndex: '',
     audits: ['否', '是'],
+    prepage: ''
   },
-  onLoad: function() {
+  onLoad: function(option) {
     wx.setNavigationBarTitle({
       title: '申请创建公司'
     })
+    if (option.prepage) {
+      this.setData({
+        prepage: option.prepage
+      })
+    }
     // apiTest.getRoleList()
     //   .then((res) => {
     //     this.data.rolesData = cloneDeep(res)
@@ -44,6 +50,18 @@ Page({
     this.setData({
       auditIndex: e.detail.value
     })
+  },
+  pageBack: function () {
+    console.log('返回')
+    if (this.data.prepage === 'contact') {
+      wx.redirectTo({
+        url: '../contact_index/contact_index?prepage=changecompany',
+      })
+    } else if (this.data.prepage === 'changecompany') {
+      wx.redirectTo({
+        url: '../change_company/change_company',
+      })
+    }
   },
   sumbitDepart: function() {
     let preCheck = false

@@ -141,7 +141,7 @@
     </view>
 
     <view class="create-form-btns">
-      <button bindtap='gotoDraft' class='save-box'>草稿箱</button>
+      <button bindtap='gotoDraft' class='save-box'>草稿箱<image wx:if="{{hasSave}}" class="save-red" mode="widthFix" src="../../common/images/red_logo.png"></image></button>
       <button id="save" class='save-submit' formType="submit">保存</button>
       <button id="submit" class="form-create-submit" formType="submit">提交</button>
     </view>

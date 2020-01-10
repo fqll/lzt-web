@@ -1,10 +1,13 @@
 <view class="navbar custom-class" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
   <view class="navbar-action-wrap row item-center" style='top:{{navTop}}px;background-color:rgba(255,255,255,.6)'>
-      <view bindtap="navBack">
-        <image class="icon-back" mode="widthFix" src="./images/icon_back.jpg"></image>
+    <view class="icon-wrap">
+      <view  bindtap="navBack" class="icon-back">
+        <image  mode="widthFix" src="./images/icon_back.jpg"></image>
       </view>
-  </view>
-  <view class='navbar-title' style='top:{{navTop}}px'>
-    {{pageName}}
+      <!-- <image bindtap="gotohouse" class="icon-house"  mode="widthFix" src="../../images/icon_house.png"></image> -->
+    </view>
+    <view class='navbar-title'>
+      {{pageName}}
+    </view>
   </view>
 </view>

@@ -1,4 +1,5 @@
 <!--pages/departure_detail/departure_detail.wxml-->
+<wxs module="dateview" src="./turn_view.wxs"></wxs>
 <!-- 导航 -->
 <navbar bind:backevent="detailBack" page-name="离职详情"></navbar>
 <!-- 内容 -->
@@ -109,7 +110,7 @@
     <text class="word-title">离职证明</text>
     <view class="word-content">
       <view>
-        <text class="char-padding"></text>兹有<text class="key-word">{{detailData.departureInfo.employeeName}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.gender}}</text>身份证号码 :<text class="key-word">{{detailData.departureInfo.idCardNo}}</text>，原系我司<text class="key-word">{{detailData.departureInfo.department}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.employeePost}}</text>职位，在岗时间自<text class="key-word">{{detailData.departureInfo.entryDate}}</text>到<text class="key-word">{{detailData.departureInfo.departureDate}}</text>日止, 因<text class="key-word">{{detailData.departureInfo.departureReasonDesc}}</text>, 于<text class="key-word">{{detailData.departureInfo.submitDate}}</text>提出离职, 并于<text class="key-word">{{detailData.departureInfo.departureDate}}</text>日与我公司正式解除劳动合同，无任何劳动纠纷
+        <text class="char-padding"></text>兹有<text class="key-word">{{detailData.departureInfo.employeeName}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.gender}}</text>身份证号 :<text class="key-word">{{detailData.departureInfo.idCardNo}}</text>, 原系我司<text class="key-word">{{detailData.departureInfo.department}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.employeePost}}</text>岗位员工, 该员工于<text class="key-word">{{dateview.date2View(detailData.departureInfo.entryDate)}}</text>与我司签订《劳动合同》, 于<text class="key-word">{{dateview.date2View(detailData.departureInfo.submitDate)}}</text>, 因<text class="key-word">{{detailData.departureInfo.departureReasonDesc}}</text>提出离职申请, 并于<text class="key-word">{{dateview.date2View(detailData.departureInfo.departureDate)}}</text>正式解除/终止劳动合同, 且已办妥一切与劳动关系相关的手续，特由公司开具此电子离职证明
       </view>
       <text class="prove para">特此证明</text>
       <text class="para">(离职证明遗失不补且涂改无效，请妥善保管)</text>

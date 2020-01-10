@@ -135,7 +135,7 @@ App({
           //   url: '../guide_index/guide_index',
           // })
           wx.redirectTo({
-            url: '../contact_index/contact_index',
+            url: '../contact_index/contact_index?prepage=loading',
           })
         }
       }

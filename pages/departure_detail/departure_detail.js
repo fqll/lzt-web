@@ -43,155 +43,171 @@ Page({
     isFollowed: false,
     canConcern: false,
     setRead: false,
-    backmakeup: false
+    backmakeup: false,
+    timer: {
+      use: false,
+      interval: ''
+    }
   },
   onLoad: function(option) {
     console.log(option)
+    wx.hideShareMenu()
     // 计算导航
     // this.countNav()
     // wx.setNavigationBarTitle({
     //   title: '详情'
     // })
-
-    if (option.backmakeup === 'show') {
-      this.setData({
-        backmakeup: true
-      })
-    }
-
-    // if (option.mode && option.mode === 'isGuide') {
-    //   this.data.isGuide = true
-    // } else {
-    //   this.data.isGuide = false
-    // }
-    // this.setData({
-    //   isGuide: this.data.isGuide
-    // })
-
-    // if (option.guideStatus) {
-    //   this.setData({
-    //     'guide.entryGuide': false,
-    //     'guide.guideStatus': option.guideStatus,
-    //     'guide.type': 'entry'
-    //   })
-    // }
-
-    // 如果是下家查看已加入的员工，设置joindone
-    if (option.joindone && option.joindone === 'done') {
-      this.setData({
-        joindone: 'joindone'
-      })
-    }
-    // 查看是否需要设置已读
-    if (option.setread && option.setread === 'need') {
-      this.setData({
-        setRead: true
-      })
-    }
-    // 获取权限
-    this.checkUserInfo()
-    // 查询下拉列表配置
-    apiTest.getSelectList({
-        type: 'sendType'
-      })
-      .then((res) => {
-        app.globalData.sendType = cloneDeep(res)
-        app.globalData.sendType.forEach((el, index) => {
-          this.data.ways.push(el.name)
-        })
-        this.setData({
-          ways: this.data.ways
-        })
-      })
-    
-    this.data.activeTab = option.activetab
-    this.data.departureId = option.departureid
-    // 如果是扫码进的
-    if (option.scene) {
-      // 小程序扫图片码直接进
-      let scene = decodeURIComponent(option.scene)
-      console.log('获取到参数')
-      console.log(scene)
-      let array = scene.split('&')
-      array.forEach((el, index) => {
-        let array2 = el.split('=')
-        if (array2[0] === 't') {
-          this.data.activeTab = array2[1]
-        } else if (array2[0] === 'i') {
-          this.data.departureId = array2[1]
-        }
-      })
-    }
-
-    this.setData({
-      myId: app.globalData.userInfo.userInfo.id,
-      activeTab: this.data.activeTab,
-      departureId: this.data.departureId
+    wx.showLoading({
+      title: '正在加载',
     })
-    // 如果是分享过来的，需验证
-    if (this.data.activeTab === 'share') {
-      this.setData({
-        keyShow: true
-      })
-    } else {
-      this.setData({
-        keyShow: false
-      })
-    }
+    // 获取权限
+    // app.globalData = {}
+    this.checkUserInfo()
+      .then(() => {
+        console.log('jinr')
+        this.getAuthorityName()
+        if (option.backmakeup === 'show') {
+          this.setData({
+            backmakeup: true
+          })
+        }
 
-    if (this.data.isGuide) {
-      if (this.data.guide.guideStatus != 5) {
-        this.setData({
-          isOver: true
-        })
-      } else {
-        this.setData({
-          isOver: false
-        })
-      }
-      this.setGuide()
-    }
+        // if (option.mode && option.mode === 'isGuide') {
+        //   this.data.isGuide = true
+        // } else {
+        //   this.data.isGuide = false
+        // }
+        // this.setData({
+        //   isGuide: this.data.isGuide
+        // })
 
-    if (this.data.isGuide && (this.data.guide.guideStatus == 3 || this.data.guide.guideStatus == 4)) {
-      return
-    }
-    apiTest.getDepartureInfo({
-        mode: this.data.isGuide ? 'guide' : '',
-        id: option.departureid,
-        userId: app.globalData.userInfo.userInfo.id
-      })
-      .then((res) => {
-        this.data.detailData = cloneDeep(res)
-        this.data.detailData.color = colorBack(res.departureInfo.auditStatusDesc)
-        this.data.detailData.departureAuditList.forEach((el, index) => {
-          el.color = colorBack(el.auditStage)
+        // if (option.guideStatus) {
+        //   this.setData({
+        //     'guide.entryGuide': false,
+        //     'guide.guideStatus': option.guideStatus,
+        //     'guide.type': 'entry'
+        //   })
+        // }
+
+        // 如果是下家查看已加入的员工，设置joindone
+        if (option.joindone && option.joindone === 'done') {
+          this.setData({
+            joindone: 'joindone'
+          })
+        }
+        // 查看是否需要设置已读
+        if (option.setread && option.setread === 'need') {
+          this.setData({
+            setRead: true
+          })
+        }
+        // 查询下拉列表配置
+        apiTest.getSelectList({
+          type: 'sendType'
         })
+          .then((res) => {
+            app.globalData.sendType = cloneDeep(res)
+            app.globalData.sendType.forEach((el, index) => {
+              this.data.ways.push(el.name)
+            })
+            this.setData({
+              ways: this.data.ways
+            })
+          })
+
+        this.data.activeTab = option.activetab
+        this.data.departureId = option.departureid
+        // 如果是扫码进的
+        if (option.scene) {
+          // 小程序扫图片码直接进
+          let scene = decodeURIComponent(option.scene)
+          console.log('获取到参数')
+          console.log(scene)
+          let array = scene.split('&')
+          array.forEach((el, index) => {
+            let array2 = el.split('=')
+            if (array2[0] === 't') {
+              this.data.activeTab = array2[1]
+            } else if (array2[0] === 'i') {
+              this.data.departureId = array2[1]
+            }
+          })
+        }
+
         this.setData({
-          detailData: this.data.detailData
+          myId: app.globalData.userInfo.userInfo.id,
+          activeTab: this.data.activeTab,
+          departureId: this.data.departureId
         })
-        if (this.data.detailData.followStatus) {
-          this.setData({
-            isFollowed: true
-          })
-        }
-        if (this.data.detailData.departureInfo.auditStatusDesc === '已办结' && this.data.guide.guideStatus != 5) {
-          this.setData({
-            isOver: true
-          })
-        }
-        if (this.data.detailData.departureInfo.employeeId == app.globalData.userInfo.userInfo.id) {
-          this.setData({
-            isSelf: true
-          })
-        }
+        // 如果是分享过来的，需验证
         if (this.data.activeTab === 'share') {
-          this.checkCanAttend()
+          this.setData({
+            keyShow: true
+          })
+        } else {
+          this.setData({
+            keyShow: false
+          })
         }
-        // 如果需要设置已读，则设置
-        if (this.data.setRead) {
-          this.read()
+
+        if (this.data.isGuide) {
+          if (this.data.guide.guideStatus != 5) {
+            this.setData({
+              isOver: true
+            })
+          } else {
+            this.setData({
+              isOver: false
+            })
+          }
+          this.setGuide()
         }
-        //
+
+        if (this.data.isGuide && (this.data.guide.guideStatus == 3 || this.data.guide.guideStatus == 4)) {
+          return
+        }
+        apiTest.getDepartureInfo({
+          mode: this.data.isGuide ? 'guide' : '',
+          id: option.departureid,
+          userId: app.globalData.userInfo.userInfo.id
+        })
+          .then((res) => {
+            wx.hideLoading()
+            this.data.detailData = cloneDeep(res)
+            this.data.detailData.color = colorBack(res.departureInfo.auditStatusDesc)
+            this.data.detailData.departureAuditList.forEach((el, index) => {
+              el.color = colorBack(el.auditStage)
+            })
+            this.setData({
+              detailData: this.data.detailData
+            })
+            if (this.data.detailData.followStatus) {
+              this.setData({
+                isFollowed: true
+              })
+            }
+            if (this.data.detailData.departureInfo.auditStatusDesc === '已办结' && this.data.guide.guideStatus != 5) {
+              this.setData({
+                isOver: true
+              })
+            }
+            if (this.data.detailData.departureInfo.employeeId == app.globalData.userInfo.userInfo.id) {
+              this.setData({
+                isSelf: true
+              })
+            }
+            if (this.data.activeTab === 'share') {
+              this.checkCanAttend()
+            }
+            // 如果需要设置已读，则设置
+            if (this.data.setRead) {
+              this.read()
+            }
+            //
+          })
+          .catch(() => {
+            wx.hideLoading()
+          })
       })
   },
   detailBack: function () {
@@ -411,22 +427,48 @@ Page({
     }
   },
   checkUserInfo: function () {
-    let that = this
-    if (app.globalData.userInfo) {
-      console.log('拿到')
-      console.log(app.globalData.userInfo)
-      if (this.data.userInfoTimer) {
-        clearInterval(this.data.userInfoTimer);
-        this.getAuthorityName()
+    return new Promise((resolve, reject) => {
+      let that = this
+      if (app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.id) {
+        if (that.data.timer.use) {
+          clearInterval(that.data.timer.interval);
+        }
+        resolve()
+      } else {
+        if (!that.data.timer.use) {
+          that.data.timer.use = true
+          that.data.timer.interval = setInterval(() => {
+            if (app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.id) {
+              if (that.data.timer.use) {
+                clearInterval(that.data.timer.interval);
+              }
+              resolve()
+            } else {
+            }
+          }, 500)
+        }
       }
-    } else {
-      console.log('循环')
-      this.data.userInfoTimer = setInterval(() => {
-        that.checkUserInfo()
-      }, 500)
-    }
+    })
+    // return new Promise((resolve, reject) => {
+    //   let that = this
+    //   if (app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.id) {
+    //     console.log('拿到')
+    //     console.log(app.globalData.userInfo)
+    //     clearInterval(that.data.timer.interval);
+    //     resolve()
+    //   } else {
+    //     console.log('循环')
+    //     if (!that.data.timer.use) {
+    //       that.data.timer.use = true
+    //       that.data.timer.interval = setInterval(() => {
+    //         that.checkUserInfo()
+    //       }, 500)
+    //     }
+    //   }
+    // })
   },
   getAuthorityName: function() {
+    console.log('去请求权限')
     app.globalData.userInfo.companyInfoList.forEach((el, index) => {
       if (el.companyId == wx.getStorageSync('companyId')) {
         this.setData({
@@ -553,7 +595,7 @@ Page({
   formSubmit: function(e) {
     let input = ''
     let rulePhone = /^[1][3,4,5,7,8][0-9]{9}$/
-    let ruleMail = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
+    let ruleMail = /^[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*\.[a-z]{2,}$/
     let result = false
     if (this.data.ways[this.data.wayIndex] === '邮件发送') {
       input = e.detail.value.email

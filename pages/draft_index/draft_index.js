@@ -32,6 +32,7 @@ Page({
     })
       .then((res) => {
         this.data.showList = cloneDeep(res.draftList)
+        this.data.showList.reverse()
         this.setData({
           showList: this.data.showList
         })

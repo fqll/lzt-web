@@ -11,16 +11,22 @@ Page({
     keyWords: '',
     hasSearched: false,
     searhNone: false,
-    companyList: []
+    companyList: [],
+    prepage: ''
   },
-  onLoad: function () {
+  onLoad: function (option) {
     wx.setNavigationBarTitle({
       title: '关联企业'
     })
+    if (option.prepage) {
+      this.setData({
+        prepage: option.prepage
+      })
+    }
   },
   gotoCreate: function () {
     wx.redirectTo({
-      url: '../create_company/create_company',
+      url: '../create_company/create_company?prepage=contact',
     })
   },
   gotoAttend: function (e) {
@@ -68,6 +74,18 @@ Page({
         title: '输入公司的邀请码',
         icon: 'none',
         duration: 2000
+      })
+    }
+  },
+  pageBack: function () {
+    console.log('返回')
+    if (this.data.prepage === 'loading') {
+      wx.redirectTo({
+        url: '../loading_index/loading_index',
+      })
+    } else if (this.data.prepage === 'changecompany') {
+      wx.redirectTo({
+        url: '../change_company/change_company',
       })
     }
   }

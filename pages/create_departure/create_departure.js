@@ -358,12 +358,20 @@ Page({
         //   eData: e,
         //   previewShow: true
         // })
-        
-        // 直接创建成功
-        this.setData({
-          eData: e
-        })
-        this.sureSubmit()
+        // 比较时间
+        let result1 = this.timeCompare(this.data.applyDate, this.data.entryDate) // 申请离职和入职比较
+        let result2 = this.timeCompare(this.data.departureDate, this.data.entryDate) // 解除劳动和申请比较
+        if (!result1) {
+          this.showErr('申请离职时间不能早于入职时间')
+        } else if (!result2) {
+          this.showErr('解除劳动时间不能早于申请离职时间')
+        } else {
+          // 直接创建成功
+          this.setData({
+            eData: e
+          })
+          this.sureSubmit()
+        }
       }
     } else if (e.detail.target.id === 'save') {
       // 整合aduitList，copyList
@@ -420,6 +428,17 @@ Page({
   },
   saveForm: function() {
 
+  },
+  timeCompare: function (time1, time2) {
+    var oDate1 = new Date(time1);
+    var oDate2 = new Date(time2);
+    if (oDate1.getTime() > oDate2.getTime()) {
+      return true
+    } else if (oDate1.getTime() < oDate2.getTime()) {
+      return false
+    } else {
+      return true
+    }
   },
   sureSubmit: function () {
     //

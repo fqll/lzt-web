@@ -1,0 +1,9 @@
+var turnView = {
+  date2View: function (date) {
+    var dateTime = date.split('-')
+    return dateTime[0] + '年' + dateTime[1] + '月' + dateTime[2] + '日'
+  }
+}
+module.exports = {
+  date2View: turnView.date2View
+}

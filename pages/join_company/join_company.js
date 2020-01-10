@@ -158,7 +158,7 @@ Page({
                 })
                 setTimeout(() => {
                   wx.redirectTo({
-                    url: '../contact_index/contact_index',
+                    url: '../contact_index/contact_index?prepage=loading',
                   })
                 }, 1000)
               })
