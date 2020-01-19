@@ -1,5 +1,5 @@
 <!-- 导航 -->
-<navbar bind:backevent="pageBack" page-name="关联企业"></navbar>
+<navbar lineShow="true" bind:backevent="pageBack" page-name="关联企业"></navbar>
 <view>
   <view class="common-search">
     <image bindtap='searchCompany' mode="widthFix" src="../../common/images/icon_search.png"></image>

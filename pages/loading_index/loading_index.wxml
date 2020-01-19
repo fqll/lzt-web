@@ -1,3 +1,4 @@
+<auth-modal  bind:closeModal="onCloseModal" isShow="{{isShow}}"></auth-modal>
 <view class="loading-wrap">
   <image mode="widthFix" src="./images/loading_index.gif"></image>
 </view>

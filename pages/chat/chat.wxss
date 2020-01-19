@@ -1,3 +1,5 @@
+@import './word_preview.wxss';
+
 page{
   margin: 0;
   background-color:#f1f1f1;
@@ -273,4 +275,25 @@ body {
   float: none !important;
   line-height: 13rpx;
   border-radius: 20rpx;
+}
+
+.mask-wrap{
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+.mask{
+  width: 92%;
+  padding: 50rpx 50rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  background-color: white;
 }

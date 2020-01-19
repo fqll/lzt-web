@@ -11,3 +11,5 @@
     </view>
   </view>
 </view>
+
+<view wx:if="{{lineShow}}" class="nav-line"></view>

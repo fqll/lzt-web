@@ -4,7 +4,8 @@ import {
   ApiTest
 } from '../../common/api/testNet.js'
 import {
-  cloneDeep, getProcessMode
+  cloneDeep,
+  getProcessMode
 } from "../../utils/util.js"
 var apiTest = new ApiTest
 
@@ -15,13 +16,13 @@ Page({
     hasSave: false, // 没有草稿
     fromSave: false, // 不是从草稿箱进来的
     guide: {
-      highLight: [false,false],
+      highLight: [false, false],
       showTop: true,
       clickLeft: '',
       clickBottom: '',
       clickShow: false
     },
-    previewData:{
+    previewData: {
 
     },
     previewShow: false, // 预览弹窗
@@ -99,16 +100,16 @@ Page({
 
     this.searchDraft()
   },
-  gotoDraft: function () {
+  gotoDraft: function() {
     wx.navigateTo({
       url: '../draft_index/draft_index',
     })
   },
-  searchDraft: function () {
+  searchDraft: function() {
     apiTest.getDraftList({
-      userId: app.globalData.userInfo.userInfo.id,
-      companyId: wx.getStorageSync('companyId')
-    })
+        userId: app.globalData.userInfo.userInfo.id,
+        companyId: wx.getStorageSync('companyId')
+      })
       .then((res) => {
         this.data.showList = cloneDeep(res.draftList)
         if (this.data.showList.length > 0) {
@@ -177,19 +178,19 @@ Page({
         })
     })
   },
-  changeGuide: function (bool) {
+  changeGuide: function(bool) {
     if (bool) {
       this.guide.startSpeaking('选择"是"，则在之后审批时要手动去选择是否关注阿离~')
-    } else{
+    } else {
       this.guide.startSpeaking('选择"否"，则默认关注了阿离，这样之后的企业可以联系你并询问阿离的工作情况~')
     }
-    
+
   },
   setGuide: function() {
     this.guide = this.selectComponent("#gudie-wrap")
     this.guide.startSpeaking('基础信息已填写完毕，滑动屏幕点击下方的按钮即可帮我开具离职证明，也可切换“是否需要审批”来查看提示~')
     this.setData({
-      'guide.highLight': [true,true],
+      'guide.highLight': [true, true],
       'guide.clickLeft': '15%',
       'guide.clickBottom': '-3%'
     })
@@ -361,7 +362,10 @@ Page({
         // 比较时间
         let result1 = this.timeCompare(this.data.applyDate, this.data.entryDate) // 申请离职和入职比较
         let result2 = this.timeCompare(this.data.departureDate, this.data.entryDate) // 解除劳动和申请比较
-        if (!result1) {
+        let result3 = this.timeCompare('', this.data.entryDate) // 解除劳动和申请比较
+        if (!result3) {
+          this.showErr('入职时间不能晚于今日')
+        } else if (!result1) {
           this.showErr('申请离职时间不能早于入职时间')
         } else if (!result2) {
           this.showErr('解除劳动时间不能早于申请离职时间')
@@ -429,9 +433,9 @@ Page({
   saveForm: function() {
 
   },
-  timeCompare: function (time1, time2) {
-    var oDate1 = new Date(time1);
-    var oDate2 = new Date(time2);
+  timeCompare: function(time1, time2) {
+    var oDate1 = time1 ? new Date(time1): new Date();
+    var oDate2 = time2 ? new Date(time2): new Date();
     if (oDate1.getTime() > oDate2.getTime()) {
       return true
     } else if (oDate1.getTime() < oDate2.getTime()) {
@@ -440,7 +444,7 @@ Page({
       return true
     }
   },
-  sureSubmit: function () {
+  sureSubmit: function() {
     //
     let e = this.data.eData
     // 整合aduitList，copyList
@@ -460,28 +464,28 @@ Page({
     })
     //
     apiTest.createNewDeparture({
-      saveType: 1,
-      mode: this.data.isGuide ? 'guide' : '',
-      userId: app.globalData.userInfo.userInfo.id,
-      departureInfo: {
-        id: this.data.formId ? this.data.formId : null,
-        companyId: wx.getStorageSync('companyId'),
-        employeeName: e.detail.value.name,
-        gender: this.data.genderIndex === '' ? '' : this.data.genderIndex == 0 ? '男' : '女',
-        idCardNo: e.detail.value.cardNo,
-        department: e.detail.value.depart,
-        employeePost: e.detail.value.post,
-        departureReason: this.data.reasonOneIndex === '' ? '' : this.data.reasonOneData[this.data.reasonOneIndex].value,
-        personalDepartureReason: this.data.reasonOneIndex === '' ? '' : this.data.reasonOneData[this.data.reasonOneIndex].name === '公司原因' ? '' : this.data.personalIndex === '' ? '' : this.data.personalData[this.data.personalIndex].value,
-        officialDepartureReason: this.data.reasonOneData[this.data.reasonOneIndex].name === '公司原因' ? this.data.officalIndex === '' ? '' : this.data.officalData[this.data.officalIndex].value : '',
-        entryDate: this.data.entryDate,
-        submitDate: this.data.applyDate,
-        departureDate: this.data.departureDate,
-        remark: this.data.auditIndex == 1 ? e.detail.value.note : ''
-      },
-      auditUserList: this.data.auditIndex == 1 ? auditUserList : [],
-      copyUserList: this.data.auditIndex == 1 ? copyUserList : []
-    })
+        saveType: 1,
+        mode: this.data.isGuide ? 'guide' : '',
+        userId: app.globalData.userInfo.userInfo.id,
+        departureInfo: {
+          id: this.data.formId ? this.data.formId : null,
+          companyId: wx.getStorageSync('companyId'),
+          employeeName: e.detail.value.name,
+          gender: this.data.genderIndex === '' ? '' : this.data.genderIndex == 0 ? '男' : '女',
+          idCardNo: e.detail.value.cardNo,
+          department: e.detail.value.depart,
+          employeePost: e.detail.value.post,
+          departureReason: this.data.reasonOneIndex === '' ? '' : this.data.reasonOneData[this.data.reasonOneIndex].value,
+          personalDepartureReason: this.data.reasonOneIndex === '' ? '' : this.data.reasonOneData[this.data.reasonOneIndex].name === '公司原因' ? '' : this.data.personalIndex === '' ? '' : this.data.personalData[this.data.personalIndex].value,
+          officialDepartureReason: this.data.reasonOneData[this.data.reasonOneIndex].name === '公司原因' ? this.data.officalIndex === '' ? '' : this.data.officalData[this.data.officalIndex].value : '',
+          entryDate: this.data.entryDate,
+          submitDate: this.data.applyDate,
+          departureDate: this.data.departureDate,
+          remark: this.data.auditIndex == 1 ? e.detail.value.note : ''
+        },
+        auditUserList: this.data.auditIndex == 1 ? auditUserList : [],
+        copyUserList: this.data.auditIndex == 1 ? copyUserList : []
+      })
       .then((res) => {
         wx.showToast({
           title: '创建成功',
@@ -508,7 +512,7 @@ Page({
         }, 1000)
       })
   },
-  closePreview: function () {
+  closePreview: function() {
     this.setData({
       previewShow: false
     })
@@ -580,7 +584,7 @@ Page({
     }
     // 如果是引导
     if (this.data.isGuide) {
-      let bool = this.data.auditIndex == 0? false: true
+      let bool = this.data.auditIndex == 0 ? false : true
       this.changeGuide(bool)
     }
   },
@@ -614,9 +618,9 @@ Page({
       officalIndex: e.detail.value
     })
   },
-  pageScrollToBottom: function () {
+  pageScrollToBottom: function() {
     console.log('触发')
-    wx.createSelectorQuery().select('#create-wrap').boundingClientRect(function (rect) {
+    wx.createSelectorQuery().select('#create-wrap').boundingClientRect(function(rect) {
       // 使页面滚动到底部
       wx.pageScrollTo({
         scrollTop: rect.bottom

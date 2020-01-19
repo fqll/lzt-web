@@ -160,7 +160,7 @@ App({
                   if (this.userInfoReadyCallback) {
                     this.userInfoReadyCallback(res)
                   }
-                  resolve()
+                  resolve(res)
                 }
               })
             } else {

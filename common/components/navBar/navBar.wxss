@@ -1,5 +1,11 @@
 /* components/navbar/index.wxss */
 
+.nav-line{
+  width: 100%;
+  height:13rpx;
+  background-color: #f2f2f2
+}
+
 .navbar {
   width: 100%;
   overflow: hidden;

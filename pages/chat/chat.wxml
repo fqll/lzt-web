@@ -1,6 +1,6 @@
 <view>
   <view id="message">
-    <view class="msg-desc">正在与“{{chatDesc.companyName}}公司”关于员工“<text>{{chatDesc.name}}</text>”的背调沟通</view>
+    <view class="msg-desc">正在与“{{chatDesc.companyName}}公司”关于员工“<text bindtap="openPreview">{{chatDesc.name}}</text>”的背调沟通</view>
     <view wx:key="{{index}}" wx:for="{{chatData.chatList}}">
       <view wx:if="{{item.userId === chatData.selfInfo.id}}" class="ask">
         <view class="msg">
@@ -31,3 +31,23 @@
 </view>
 
 <guide-wrap wx:if="{{isGuide}}" clickLeft="{{guide.clickLeft}}" type="{{guide.type}}" clickBottom="{{guide.clickBottom}}" clickShow="{{guide.clickShow}}" id="gudie-wrap"></guide-wrap>
+
+<view wx:if="{{previewShow}}"  class="preview-wrap">
+  <view class="content">
+    <text class="word-title">{{previewData.employeeName}}的离职信息</text>
+    <scroll-view scroll-y="true" class="word-content">
+      <view>
+        <text class="char-padding"></text>兹有 {{previewData.employeeName}} （{{previewData.gender}}）（身份证号码 : {{previewData.idCardNo}}）， 原系我司 {{previewData.department}} 部门 {{previewData.employeePost}}， 在岗时间自 {{previewData.entryDate}}到 {{previewData.departureDate}} 日止， 因{{previewData.departureReasonDesc}}，
+        于{{previewData.submitDate}}提出离职， 并于 {{previewData.departureDate}} 日与我公司正式解除劳动合同，无任何劳动纠纷
+      </view>
+      <text><text class="char-padding"></text>（离职证明遗失不补且涂改无效，请妥善保管）</text>
+      <text class="prove"><text class="char-padding"></text>特此证明</text>
+      <text class="right-align">{{previewData.companyName}}</text>
+      <text class="right-align right-time">{{previewData.departureDate}}</text>
+    </scroll-view>
+    <!-- <button bindtap="sureSubmit" class="preview-btn">
+      开具离职证明
+    </button> -->
+  </view>
+  <image class="preview-close" bindtap="closePreview" mode="widthFix" src="./images/preview_close.png"></image>
+</view>

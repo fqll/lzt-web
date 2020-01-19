@@ -34,12 +34,14 @@ const cloneDeep = function (obj) {
 const colorBack = function (text) {
   if (text === '待审批') {
     return '#f12b47'
-  } else if (text === '同意离职' || text === '已办结') {
+  } else if (text === '同意离职' || text === '已办结' || text === '已入职') {
     return '#4885fa'
   } else if (text === '已撤回') {
     return '#999999'
   } else if (text === '拒绝离职' || text === '审批退回') {
     return '#f12b47'
+  } else if (text === '待入职') {
+    return 'rgb(227,128,75)'
   }
 };
 const getProcessMode = function () {

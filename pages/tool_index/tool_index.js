@@ -8,6 +8,7 @@ const app = getApp()
 
 Page({
   data: {
+    authShow: false,
     msgPowerShow: false,
     companyInfo: '',
     powerArray: [],
@@ -23,6 +24,7 @@ Page({
     }
   },
   onShow: function () {
+    console.log(app.globalData.userInfo)
     if (this.data.option.mode === 'isGuide') {
       this.data.isGuide = true
     } else {
@@ -68,6 +70,63 @@ Page({
     this.setData({
       option: option
     })
+    this.getAvator()
+  },
+  onCloseModal: function (e) {
+    // this.onLoad(this.data.option)
+    // 提交用户数据
+    apiTest.completedUserInfo({
+      userId: app.globalData.userInfo.userInfo.id,
+      portraitUrl: app.globalData.userInfo.wxInfo.avatarUrl,
+      nickName: app.globalData.userInfo.wxInfo.nickName
+    })
+      .then((res) => {
+        this.setData({
+          authShow: false
+        })
+      })
+      .catch((err) => {
+        wx.showToast({
+          title: '上传头像错误',
+          icon: 'none',
+          duration: 2000
+        })
+        this.setData({
+          authShow: false
+        })
+      })
+  },
+  getAvator: function () {
+    // 获取头像
+    app.globalData.getAuthUserInfo()
+      .then((userRes) => {
+        if (!userRes.userInfo.avatarUrl) {
+          apiTest.completedUserInfo({
+            userId: app.globalData.userInfo.userInfo.id,
+            portraitUrl: app.globalData.userInfo.wxInfo.avatarUrl,
+            nickName: app.globalData.userInfo.wxInfo.nickName
+          })
+            .then((res) => {
+
+            })
+            .catch((err) => {
+              wx.showToast({
+                title: '上传头像错误',
+                icon: 'none',
+                duration: 2000
+              })
+              this.setData({
+                authShow: false
+              })
+            })
+        }
+      })
+      .catch(() => {
+        wx.hideLoading()
+        this.setData({
+          authShow: true
+        })
+      })
   },
   setGuide: function () {
     this.guide = this.selectComponent("#gudie-wrap")
@@ -237,7 +296,7 @@ Page({
     return {
       title: '离职通',
       path: '/pages/loading_index/loading_index',
-      imageUrl: "./images/share.png",
+      imageUrl: "./images/share.jpg",
       success: (res) => { }
     }
   },

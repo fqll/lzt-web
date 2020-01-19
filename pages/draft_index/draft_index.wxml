@@ -1,14 +1,17 @@
 <!--pages/mine_departrue/mine_departrue.wxml-->
 <view>
   <view class="list-wrap">
-    <view data-id="{{item.id}}" bindtap='goonCreate' wx:for="{{showList}}"  wx:key="{{index}}" class="each-list">
-      <text>{{item.employeeName}}</text>
-      <text>员工离职证明</text>
-      <text>{{item.createdTime}}</text>
-      <image data-id="{{item.id}}" catchtap='delDraft' mode="widthFix" src="./images/icon_delete.png"></image>
+    <view data-id="{{item.id}}" bindtap='goonCreate' wx:for="{{showList}}" wx:key="{{index}}" class="each-list">
+      <view class="left-data">
+        <text>{{item.employeeName}}</text>
+        <text>员工离职证明</text>
+      </view>
+      <view class="right-data">
+        <text>{{item.createdTime}}</text>
+        <image data-id="{{item.id}}" catchtap='delDraft' mode="widthFix" src="./images/icon_delete.png"></image>
+      </view>
     </view>
   </view>
   <image wx:if="{{showList.length == 0}}" class="none-data-img" mode="widthFix" src="../../common/images/none-data-img.png"></image>
   <text class="none-data-text" wx:if="{{showList.length == 0}}">暂无数据</text>
 </view>
-  

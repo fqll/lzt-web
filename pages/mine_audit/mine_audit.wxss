@@ -24,6 +24,10 @@
   background-color: #293949;
   color: white;
   font-size: 22rpx;
+  overflow: hidden
+}
+.each-name image{
+  width: 90rpx;
 }
 .each-desc{
   font-size: 24rpx;
@@ -103,4 +107,18 @@
   position: relative;
   z-index: 10001 !important;
   background-color: white !important
+}
+
+.none-data-img{
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 100rpx;
+}
+.none-data-text{
+  text-align: center;
+  font-size: 30rpx;
+  color: #bfbfbf;
+  margin-top: 20rpx;
+  margin-right: 5%;
+  display: block
 }

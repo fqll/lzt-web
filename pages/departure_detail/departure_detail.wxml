@@ -1,15 +1,21 @@
 <!--pages/departure_detail/departure_detail.wxml-->
 <wxs module="dateview" src="./turn_view.wxs"></wxs>
 <!-- 导航 -->
-<navbar bind:backevent="detailBack" page-name="离职详情"></navbar>
+<navbar lineShow="true" bind:backevent="detailBack" page-name="离职详情"></navbar>
 <!-- 内容 -->
 <view wx:if="{{!isOver && activeTab !== 'join'}}" class="detail-wrap">
   <view class="detail-head">
     <view class="detail-name">{{detailData.departureInfo.employeeName}}</view>
     <view class="detail-desc">
-      <text>离职证明审批</text>
-      <text style="color: {{detailData.color}}">{{detailData.departureInfo.auditStatusDesc}}</text>
+      <text>{{detailData.departureInfo.employeeName}}离职证明审批</text>
+      <view class="sign-wrap">
+        <view class="sign-text"></view>离职原因： {{detailData.departureInfo.departureReasonDesc}}</view>
+      <view class="sign-wrap">
+        <view class="sign-text"></view>最后工作日期： {{detailData.departureInfo.departureDate}}</view>
+      <!-- <text style="color: {{item.color}}">{{item.auditStatusDesc}}</text> -->
     </view>
+    <text class="detail-time">{{detailData.departureInfo.submitDate}}</text>
+    <text class="absoulte-status" style="color: {{detailData.color}}">{{detailData.departureInfo.auditStatusDesc}}</text>
   </view>
   <view class="detail-content">
     <view class="each-row">
@@ -43,7 +49,9 @@
   </view>
   <view wx:if="{{detailData.departureAuditList.length > 0 && activeTab !== 'share'}}" class="detail-record">
     <view class="record-row">
-      <view class="detail-name">{{detailData.departureAuditList[0].nickName}}</view>
+      <view class="detail-name">
+        <image mode="widthFix" src="{{detailData.departureAuditList[0].portraitUrl}}"></image>
+      </view>
       <text class="other-name">{{detailData.departureAuditList[0].userId === myId ? '我': detailData.departureAuditList[0].nickName}}</text>
       <text class="record-status">{{detailData.departureAuditList[0].auditStage}}</text>
       <text class="record-time">{{detailData.departureAuditList[0].operateTime}}</text>
@@ -51,12 +59,14 @@
 
     <block wx:if="{{detailData.departureAuditList.length > 1}}" wx:for="{{detailData.departureAuditList}}" wx:key="index">
       <block wx:if="{{index > 0}}">
-        <view class="record-line">
+        <!-- <view class="record-line">
 
-        </view>
+        </view> -->
 
         <view class="record-row">
-          <view class="detail-name">{{item.nickName}}</view>
+          <view class="detail-name">
+            <image mode="widthFix" src="{{item.portraitUrl}}"></image>
+          </view>
           <text class="other-name">{{item.userId === myId ? '我': item.nickName}}</text>
           <text style='color: {{item.color}}' class="record-status">{{item.auditStage}}</text>
           <text class="record-time">{{item.operateTime?item.operateTime: '暂无'}}</text>
@@ -70,18 +80,20 @@
   </view>
 
   <view wx:if="{{activeTab === 'wait' || activeTab === 'done'}}" class="action-wrap">
-    <view wx:if="{{detailData.cancelable && activeTab === 'wait'}}" bindtap="cancelDeparture">
-      <image mode="widthFix" src="./images/back.png"></image>
-      <text>撤回流程</text>
-    </view>
+    <button wx:if="{{detailData.cancelable && activeTab === 'wait'}}" bindtap="cancelDeparture">
+      撤回流程
+    </button>
     <button bindtap="gotoReject" wx:if="{{activeTab === 'wait'}}" class="reject">拒绝离职</button>
     <button bindtap="agreeDeparture" wx:if="{{activeTab === 'wait'}}" class="{{guide.guideStatus == 5 ? 'highlight agree' : 'agree'}}">同意离职</button>
     <!-- <button bindtap="contactDeparture" wx:if="{{(activeTab === 'wait' || activeTab === 'done') && canConcern}}" class="{{guide.guideStatus == 5 ? 'highlight contact' : 'contact'}}">{{isFollowed? '已关注': '关注'}}</button> -->
   </view>
 
   <form wx:if="{{detailData.departureInfo.auditStatusDesc === '已办结' && activeTab === 'send'}}" bindsubmit='formSubmit' bindreset='formReset' class="basic-input-form">
-    <view class="share-form form-section">
+    <view class="share-form form-section wx-section">
       <text class="form-label">发送给员工</text>
+      <view class="wx-share-wrap">
+          <button open-type='share' class="wx-share">微信发送</button>
+      </view>
       <picker class="form-picker form-control" bindchange='wayChange' value="{{wayIndex}}" range='{{ways}}'>
         当前选择：{{ways[wayIndex]}}
       </picker>
@@ -110,10 +122,19 @@
     <text class="word-title">离职证明</text>
     <view class="word-content">
       <view>
-        <text class="char-padding"></text>兹有<text class="key-word">{{detailData.departureInfo.employeeName}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.gender}}</text>身份证号 :<text class="key-word">{{detailData.departureInfo.idCardNo}}</text>, 原系我司<text class="key-word">{{detailData.departureInfo.department}}</text><text style="margin-left: 0" class="key-word">{{detailData.departureInfo.employeePost}}</text>岗位员工, 该员工于<text class="key-word">{{dateview.date2View(detailData.departureInfo.entryDate)}}</text>与我司签订《劳动合同》, 于<text class="key-word">{{dateview.date2View(detailData.departureInfo.submitDate)}}</text>, 因<text class="key-word">{{detailData.departureInfo.departureReasonDesc}}</text>提出离职申请, 并于<text class="key-word">{{dateview.date2View(detailData.departureInfo.departureDate)}}</text>正式解除/终止劳动合同, 且已办妥一切与劳动关系相关的手续，特由公司开具此电子离职证明
+        <text class="char-padding"></text>兹有
+        <text class="key-word">{{detailData.departureInfo.employeeName}}</text>
+        <text style="margin-left: 0" class="key-word">{{detailData.departureInfo.gender}}</text>身份证号 :
+        <text class="key-word">{{detailData.departureInfo.idCardNo}}</text>, 原系我司
+        <text class="key-word">{{detailData.departureInfo.department}}</text>
+        <text style="margin-left: 0" class="key-word">{{detailData.departureInfo.employeePost}}</text>岗位员工, 该员工于
+        <text class="key-word">{{dateview.date2View(detailData.departureInfo.entryDate)}}</text>与我司签订《劳动合同》, 于
+        <text class="key-word">{{dateview.date2View(detailData.departureInfo.submitDate)}}</text>, 因
+        <text class="key-word">{{detailData.departureInfo.departureReasonDesc}}</text>提出离职申请, 并于
+        <text class="key-word">{{dateview.date2View(detailData.departureInfo.departureDate)}}</text>正式解除/终止劳动合同, 且已办妥一切与劳动关系相关的手续，特由公司开具此电子离职证明
       </view>
       <text class="prove para">特此证明</text>
-      <text class="para">(离职证明遗失不补且涂改无效，请妥善保管)</text>
+      <!-- <text class="para">(离职证明遗失不补且涂改无效，请妥善保管)</text> -->
       <text class="right-align para">{{detailData.companyInfo.companyName}}</text>
       <text class="right-align right-time para">{{detailData.departureInfo.departureDate}}</text>
     </view>
@@ -131,16 +152,19 @@
         发送
       </button>
     </view>
-<!-- 
+    <!-- 
     <button wx:if="{{(activeTab === 'share' || activeTab === 'send') && activeTab !== 'join' && !canAttend}}" open-type="share" class="form-btn-submit top-some">
       发送
     </button> -->
 
     <form wx:if="{{(activeTab === 'share' || activeTab === 'send') && activeTab !== 'join' && !canAttend}}" bindsubmit='formSubmit' bindreset='formReset' class="basic-input-form">
-      <view class="share-form form-section">
+      <view class="share-form form-section wx-section">
         <text class="form-label">发送给员工</text>
+        <view class="wx-share-wrap">
+          <button open-type='share' class="wx-share">微信发送</button>
+        </view>
         <picker class="form-picker form-control" bindchange='wayChange' value="{{wayIndex}}" range='{{ways}}'>
-          当前选择：{{ways[wayIndex]}}
+          或选择：{{ways[wayIndex]}}
         </picker>
       </view>
 

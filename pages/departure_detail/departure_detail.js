@@ -108,7 +108,9 @@ Page({
           .then((res) => {
             app.globalData.sendType = cloneDeep(res)
             app.globalData.sendType.forEach((el, index) => {
-              this.data.ways.push(el.name)
+              if (el.name !== '微信发送') {
+                this.data.ways.push(el.name)
+              }
             })
             this.setData({
               ways: this.data.ways
@@ -664,7 +666,7 @@ Page({
           departureId: that.data.detailData.departureInfo.id,
           companyId: that.data.canAttendCompnayDesc[res.tapIndex].companyId
         })
-          .then((res) => {
+          .then((ress) => {
             wx.showToast({
               title: '入职成功！',
               duration: 2000

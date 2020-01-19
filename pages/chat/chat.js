@@ -13,6 +13,9 @@ Page({
       companyName: '',
       name: ''
     },
+    previewData: {
+
+    },
     guide: {
       type: 'entry',
       clickLeft: '',
@@ -72,6 +75,16 @@ Page({
   textInput: function (e) {
     this.data.msgContent = e.detail.value
   },
+  closePreview: function () {
+    this.setData({
+      previewShow: false
+    })
+  },
+  openPreview: function () {
+    this.setData({
+      previewShow: true
+    })
+  },
   setAvator: function () {
     let otherInfo = this.data.chatData.otherInfo
     this.data.chatData.chatList.forEach((el, index) => {
@@ -99,8 +112,10 @@ Page({
       userId: app.globalData.userInfo.userInfo.id
     })
       .then((res) => {
+        this.data.previewData = cloneDeep(res.departureInfo)
         this.data.chatDesc.name = res.departureInfo.employeeName
         this.setData({
+          previewData: this.data.previewData,
           chatDesc: this.data.chatDesc
         })
       })

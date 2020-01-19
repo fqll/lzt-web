@@ -29,6 +29,7 @@ Page({
     activeId: 'reason',
     listData: '', // 离职员工库
     peopleNum: '',
+    startTime: '',
     input: ''
   },
   onLoad: function(option) {
@@ -203,10 +204,11 @@ Page({
       nickName: nickName ? nickName : ''
     })
       .then((res) => {
-        this.data.listData = cloneDeep(res)
+        this.data.listData = cloneDeep(res.quitEmployeeList)
         if (!nickName) {
           this.setData({
-            peopleNum: this.data.listData.length
+            peopleNum: this.data.listData.length,
+            startTime: res.sinceTime
           })
         }
         this.setData({

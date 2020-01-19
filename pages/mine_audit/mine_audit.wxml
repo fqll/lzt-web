@@ -1,15 +1,17 @@
 <view>
   <cate-tab highlight="{{hightlight}}" redShow="{{redShow}}" activeId="{{activeId}}" tabs="{{tabs}}" bind:changetab="changetab"></cate-tab>
   <view class="list-wrap">
-    <view wx:if="{{guide.guideStatus != 1}}" data-redcircle="{{item.readStatusDesc}}"  data-index="{{index}}" data-departureid="{{item.departureId}}" bindtap="gotoDetail" wx:for="{{showList}}" wx:key="index" class="{{isGuide && (guide.guideStatus == 2 || guide.guideStatus == 3) && index==0 ? 'high-list each-list': 'each-list'}}">
+    <view wx:if="{{guide.guideStatus != 1}}" data-redcircle="{{item.readStatusDesc}}" data-index="{{index}}" data-departureid="{{item.departureId}}" bindtap="gotoDetail" wx:for="{{showList}}" wx:key="index" class="{{isGuide && (guide.guideStatus == 2 || guide.guideStatus == 3) && index==0 ? 'high-list each-list': 'each-list'}}">
       <!-- 小红点 -->
       <text wx:if="{{item.readStatusDesc === '未读'}}" class="red-circle"></text>
       <!--  -->
       <view class="each-name">{{item.employeeName}}</view>
       <view class="each-desc">
-        <text>离职证明审批</text>
-        <view class="sign-wrap"><view class="sign-text"></view>离职原因： {{item.departureReasonDesc}}</view>
-        <view  class="sign-wrap"><view class="sign-text"></view>最后工作日期： {{item.departureDate}}</view>
+        <text>{{item.employeeName}}离职证明审批</text>
+        <view class="sign-wrap">
+          <view class="sign-text"></view>离职原因： {{item.departureReasonDesc}}</view>
+        <view class="sign-wrap">
+          <view class="sign-text"></view>最后工作日期： {{item.departureDate}}</view>
         <!-- <text style="color: {{item.color}}">{{item.auditStatusDesc}}</text> -->
       </view>
       <text class="each-time">{{item.submitDate}}</text>
@@ -20,6 +22,9 @@
         <button catchtap="gotoChat" data-departureid="{{item.departureId}}" wx:if="{{item.chatAble && isBoss}}" class="each-button">背调信息</button>
       </block>
     </view>
+
+    <image wx:if="{{showList.length == 0}}" class="none-data-img" mode="widthFix" src="../../common/images/none-data-img.png"></image>
+    <text class="none-data-text" wx:if="{{showList.length == 0}}">暂无数据</text>
   </view>
 </view>
 

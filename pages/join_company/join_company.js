@@ -55,8 +55,8 @@ Page({
     // 
     // 获取头像
     app.globalData.getAuthUserInfo()
-      .then(() => {
-        if (app.globalData.userInfo.wxInfo.avatarUrl) {
+      .then((userRes) => {
+        if (!userRes.userInfo.avatarUrl) {
           apiTest.completedUserInfo({
             userId: app.globalData.userInfo.userInfo.id,
             portraitUrl: app.globalData.userInfo.wxInfo.avatarUrl,

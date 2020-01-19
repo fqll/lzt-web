@@ -1,3 +1,4 @@
+<auth-modal  bind:closeModal="onCloseModal" isShow="{{authShow}}"></auth-modal>
 <view>
   <view class="top-line"></view>
   <view class="company-title">

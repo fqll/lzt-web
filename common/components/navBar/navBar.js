@@ -10,6 +10,10 @@ Component({
    */
   properties: {
     pageName: String,
+    lineShow: {
+      type:Boolean,
+      value: false
+    }
   },
 
   /**

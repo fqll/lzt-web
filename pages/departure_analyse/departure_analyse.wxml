@@ -33,7 +33,7 @@
 
   <view class="stock-wrap" wx:elif="{{activeId === 'stock'}}">
     <view class="page-wrap">
-      <text class="text-already">已离职<text> {{peopleNum}} </text>人</text>
+      <text class="text-already">自 {{startTime}} 起已离职<text> {{peopleNum}} </text>人</text>
       <view style="width: 100%;margin: 0" class="common-search">
         <image bindtap='searchStock' mode="widthFix" src="../../common/images/icon_search.png"></image>
         <input maxlength='20' required="required" value="" bindinput="keyWordsInput" placeholder='搜索员工名字'></input>
